@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class WizardManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] blueTowers;
-    [SerializeField] GameObject[] greenTowers;
+    private WizardState wizardState;
+    public enum WizardStateToSwitch { DEAD, ESCAPE, HIDDEN, INTREPID, NORMAL, SAFE }
+
+    private void Awake()
+    {
+        wizardState = GetComponent<WizardState>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -17,10 +22,5 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public GameObject GetClosestTower(Vector3 position, )
-    {
-
     }
 }
