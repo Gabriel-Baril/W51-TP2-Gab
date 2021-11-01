@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5486115544775420251}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,4 +95,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7f28ff9a6c964040bfaf4bb0c1fce46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerColor: {r: 1, g: 1, b: 1, a: 1}
+  towerHealth: 100
