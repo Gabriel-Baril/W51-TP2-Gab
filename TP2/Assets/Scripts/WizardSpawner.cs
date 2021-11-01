@@ -13,6 +13,8 @@ public class WizardSpawner : MonoBehaviour
     private GameObject[] greenWizards; 
     private GameObject[] blueWizards;
 
+    private const float WIZARD_SPAWN_OFFSET = -0.75f;
+
     // Donc, un magicien apparaîtera 1 seconde après le début du jeu.
     private float timeSinceLastSpawn = 4f;
 
@@ -74,6 +76,12 @@ public class WizardSpawner : MonoBehaviour
 
                     // La position du magicien est déterminée aléatoirement parmi les tours actives.
                     greenWizards[i].transform.position = filteredGreenTowers[Random.Range(0, filteredGreenTowers.Count)].transform.position;
+                    
+                    // On applique un offset à la position du magicien.
+                    Vector3 spawnPoint = greenWizards[i].transform.position;
+                    spawnPoint.y += WIZARD_SPAWN_OFFSET;
+                    greenWizards[i].transform.position = spawnPoint;
+
                     break;
                 }
             }
@@ -87,6 +95,12 @@ public class WizardSpawner : MonoBehaviour
 
                     // La position du magicien est déterminée aléatoirement parmi les tours actives.
                     blueWizards[i].transform.position = filteredBlueTowers[Random.Range(0, filteredBlueTowers.Count)].transform.position;
+
+                    // On applique un offset à la position du magicien.
+                    Vector3 spawnPoint = blueWizards[i].transform.position;
+                    spawnPoint.y += WIZARD_SPAWN_OFFSET;
+                    blueWizards[i].transform.position = spawnPoint;
+
                     break;
                 }
             }
