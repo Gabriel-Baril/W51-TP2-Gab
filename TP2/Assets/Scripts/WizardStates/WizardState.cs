@@ -4,17 +4,22 @@ using UnityEngine;
 
 public abstract class WizardState : MonoBehaviour
 {
-    // Start is called before the first frame update
+    protected WizardManager wizardManager;
+
+    protected int healthPoint = 50;
+    protected float speed;
+
+    private void Awake()
+    {
+        wizardManager = GetComponent<WizardManager>();
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() {}
 
     public abstract void Move();
     public abstract void ManageStateChange();
