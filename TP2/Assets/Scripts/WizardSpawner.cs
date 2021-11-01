@@ -65,24 +65,29 @@ public class WizardSpawner : MonoBehaviour
             }
 
             // Spawning des magiciens
-            // Une seule boucle, il y aura toujours la même quantité de magiciens dans chaque équipe.
+            // Magicien vert
             for (int i = 0; i < maxNumberOfWizardsPerTeam; i++)
             {
-                // Magicien vert
                 if (!greenWizards[i].activeSelf)
                 {
                     greenWizards[i].SetActive(true);
 
                     // La position du magicien est déterminée aléatoirement parmi les tours actives.
                     greenWizards[i].transform.position = filteredGreenTowers[Random.Range(0, filteredGreenTowers.Count)].transform.position;
+                    break;
                 }
+            }
 
-                // Magicien bleu
+            // Magicien bleu
+            for (int i = 0; i < maxNumberOfWizardsPerTeam; i++)
+            {
                 if (!blueWizards[i].activeSelf)
                 {
                     blueWizards[i].SetActive(true);
 
+                    // La position du magicien est déterminée aléatoirement parmi les tours actives.
                     blueWizards[i].transform.position = filteredBlueTowers[Random.Range(0, filteredBlueTowers.Count)].transform.position;
+                    break;
                 }
             }
         }
