@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WizardManager : MonoBehaviour
 {
-    protected WizardState wizardState;
-    protected Team wizardTeam;
+    private WizardState wizardState;
+    [SerializeField] private Team wizardTeam;
 
     public enum WizardStateToSwitch { DEAD, ESCAPE, HIDDEN, INTREPID, NORMAL, SAFE }
 
@@ -14,17 +14,46 @@ public class WizardManager : MonoBehaviour
         wizardState = GetComponent<WizardState>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void ChangeWizardState(WizardStateToSwitch nextState)
     {
-        
+        Destroy(wizardState);
+
+        switch (nextState)
+        {
+            case WizardStateToSwitch.DEAD:
+                {
+                    wizardState = gameObject.AddComponent<DeadState>() as DeadState;
+                    break;
+                }
+            case WizardStateToSwitch.ESCAPE:
+                {
+                    wizardState = gameObject.AddComponent<EscapeState>() as EscapeState;
+                    break;
+                }
+            case WizardStateToSwitch.HIDDEN:
+                {
+                    wizardState = gameObject.AddComponent<HiddenState>() as HiddenState;
+                    break;
+                }
+            case WizardStateToSwitch.INTREPID:
+                {
+                    wizardState = gameObject.AddComponent<IntrepidState>() as IntrepidState;
+                    break;
+                }
+            case WizardStateToSwitch.NORMAL:
+                {
+                    wizardState = gameObject.AddComponent<NormalState>() as NormalState;
+                    break;
+                }
+            case WizardStateToSwitch.SAFE:
+                {
+                    wizardState = gameObject.AddComponent<SafeState>() as SafeState;
+                    break;
+                }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     public Team GetTeam()
     {
         return wizardTeam;

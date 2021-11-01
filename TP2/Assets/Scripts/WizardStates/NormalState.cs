@@ -23,6 +23,7 @@ public class NormalState : WizardState
 
     public override void Move()
     {
+        Debug.Log(closestTower.transform.position);
         transform.position = Vector3.MoveTowards(transform.position, closestTower.transform.position, speed * Time.deltaTime);
     }
 

@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3445854582736703298}
   - component: {fileID: 827497439399323601}
+  - component: {fileID: 2529580785627469023}
+  - component: {fileID: 8228572420125869484}
   m_Layer: 0
   m_Name: WizardGreen
   m_TagString: Untagged
@@ -82,3 +84,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2529580785627469023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134483657036602547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb27044e2f1ec040954617c1725fdf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wizardTeam: 1
+--- !u!114 &8228572420125869484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134483657036602547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c62682c2d2d684189f631a10cd92ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

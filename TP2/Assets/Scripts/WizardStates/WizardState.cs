@@ -14,11 +14,6 @@ public abstract class WizardState : MonoBehaviour
         wizardManager = GetComponent<WizardManager>();
     }
 
-    void Start()
-    {
-        
-    }
-
     void Update() {}
 
     public abstract void Move();
