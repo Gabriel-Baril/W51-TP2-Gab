@@ -49,3 +49,6 @@ TagManager:
   - name: Tower
     uniqueID: 3799503629
     locked: 0
+  - name: Wizard
+    uniqueID: 879743999
+    locked: 0
