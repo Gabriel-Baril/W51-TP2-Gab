@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Forest
   - Tower
+  - GreenTower
+  - BlueTower
   layers:
   - Default
   - TransparentFX
