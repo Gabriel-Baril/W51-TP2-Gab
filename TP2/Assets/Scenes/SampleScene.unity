@@ -383,6 +383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CenterLeftTower
       objectReference: {fileID: 0}
+    - target: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_TagString
+      value: BlueTower
+      objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -456,6 +460,10 @@ PrefabInstance:
     - target: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_Name
       value: BottomRightTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_TagString
+      value: GreenTower
       objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_RootOrder
@@ -899,6 +907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopLeftTower
       objectReference: {fileID: 0}
+    - target: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_TagString
+      value: BlueTower
+      objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -972,6 +984,10 @@ PrefabInstance:
     - target: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_Name
       value: BottomLeftTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_TagString
+      value: BlueTower
       objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_RootOrder
@@ -1138,6 +1154,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopRightTower
       objectReference: {fileID: 0}
+    - target: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_TagString
+      value: GreenTower
+      objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1293,6 +1313,10 @@ PrefabInstance:
     - target: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_Name
       value: CenterRightTower
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_TagString
+      value: GreenTower
       objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_RootOrder
