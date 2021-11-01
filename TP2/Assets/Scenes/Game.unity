@@ -1689,6 +1689,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 827497439399323601, guid: 3d4ca9afec620e440a7a0bae1253588e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 827497439399323601, guid: 3d4ca9afec620e440a7a0bae1253588e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 879743999
+      objectReference: {fileID: 0}
     - target: {fileID: 2134483657036602547, guid: 3d4ca9afec620e440a7a0bae1253588e, type: 3}
       propertyPath: m_Name
       value: WizardGreen
