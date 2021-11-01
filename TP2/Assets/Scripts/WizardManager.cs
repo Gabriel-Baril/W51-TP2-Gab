@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WizardManager : MonoBehaviour
 {
-    private WizardState wizardState;
+    protected WizardState wizardState;
+    protected Team wizardTeam;
+
     public enum WizardStateToSwitch { DEAD, ESCAPE, HIDDEN, INTREPID, NORMAL, SAFE }
 
     private void Awake()
@@ -22,5 +24,9 @@ public class WizardManager : MonoBehaviour
     void Update()
     {
         
+    }
+    public Team GetTeam()
+    {
+        return wizardTeam;
     }
 }
