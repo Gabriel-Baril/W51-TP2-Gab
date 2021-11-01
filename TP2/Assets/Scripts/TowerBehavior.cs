@@ -18,4 +18,8 @@ public class TowerBehavior : MonoBehaviour
     {
 
     }
+    public bool IsAlive()
+    {
+        return towerHealth > 0;
+    }
 }
