@@ -240,6 +240,9 @@ MonoBehaviour:
   - {fileID: 1738406146}
   - {fileID: 620054328}
   - {fileID: 4358886}
+  uiTexts:
+  - {fileID: 825789513}
+  - {fileID: 1147645023}
 --- !u!4 &39218314
 Transform:
   m_ObjectHideFlags: 0
@@ -1703,7 +1706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2134483657036602547, guid: 3d4ca9afec620e440a7a0bae1253588e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3445854582736703298, guid: 3d4ca9afec620e440a7a0bae1253588e, type: 3}
       propertyPath: m_RootOrder
