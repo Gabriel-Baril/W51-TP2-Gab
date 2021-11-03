@@ -38,10 +38,10 @@ public class WizardManager : MonoBehaviour
         {
             // Magicien est mort.
             gameObject.SetActive(false);
+            GameManager.Instance.RemoveWizardCount(wizardTeam);
 
             // A FAIRE:
             // AJOUTER UN KILL AU MAGICIEN QUI A ATTAQU�
-            // METTRE � JOUR LE NOMBRE DE MAGES DANS LE GAME MANAGER
         }
     }
 
@@ -110,5 +110,5 @@ public class WizardManager : MonoBehaviour
     public int GetStartingHealth()
     {
         return startingHealthPoints;
-        }
+    }
 }

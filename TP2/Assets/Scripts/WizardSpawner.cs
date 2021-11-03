@@ -106,6 +106,9 @@ public class WizardSpawner : MonoBehaviour
                     break;
                 }
             }
+
+            // On met à jour le compteur de magiciens.
+            GameManager.Instance.AddWizardCount();
         }
 
         timeSinceLastSpawn += Time.deltaTime;

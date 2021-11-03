@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] greenTowers;
     [SerializeField] Text[] uiTexts;
 
-    private int greenWizardsAlive = 0;
     private int blueWizardsAlive = 0;
+    private int greenWizardsAlive = 0;
 
 
     private void Awake()
@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        uiTexts[0].text = blueWizardsAlive.ToString();
+        uiTexts[1].text = greenWizardsAlive.ToString();
     }
 
     void Update()
@@ -69,5 +70,32 @@ public class GameManager : MonoBehaviour
     public GameObject[] GetGreenTowers()
     {
         return greenTowers;
+    }
+
+    public void AddWizardCount()
+    {
+        // Les magiciens apparaîssent en même temps, donc on peut mettre à jour le "ui" en même temps.
+        blueWizardsAlive++;
+        uiTexts[0].text = blueWizardsAlive.ToString();
+        greenWizardsAlive++;
+        uiTexts[1].text = greenWizardsAlive.ToString();
+    }
+
+    public void RemoveWizardCount(Team team)
+    {
+        if (team == Team.BLUE)
+        {
+            blueWizardsAlive--;
+            uiTexts[0].text = blueWizardsAlive.ToString();
+
+        }
+        else
+        {
+            greenWizardsAlive--;
+            uiTexts[1].text = greenWizardsAlive.ToString();
+        }
+
+        // A FAIRE
+        // CHECKER POUR LA FIN DE LA PARTIE
     }
 }
