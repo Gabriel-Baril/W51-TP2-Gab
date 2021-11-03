@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject[] blueTowers;
     [SerializeField] GameObject[] greenTowers;
+    [SerializeField] Text[] uiTexts;
+
+    private int greenWizardsAlive = 0;
+    private int blueWizardsAlive = 0;
+
 
     private void Awake()
     {
@@ -44,13 +50,14 @@ public class GameManager : MonoBehaviour
         GameObject closestTower = towers[0];
         float minDistance = Vector3.Distance(position, closestTower.transform.position);
         
-        foreach(GameObject tower in towers)
+        for(int i = 1; i < towers.Length; i++)
         {
-            if(Vector3.Distance(position, tower.transform.position) < minDistance)
+            if (Vector3.Distance(position, towers[i].transform.position) < minDistance)
             {
-                closestTower = tower;
+                closestTower = towers[i];
             }
         }
+
         return closestTower;
     }
 
