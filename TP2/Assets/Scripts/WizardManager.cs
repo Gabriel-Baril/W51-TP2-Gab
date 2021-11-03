@@ -63,4 +63,11 @@ public class WizardManager : MonoBehaviour
     {
         return wizardOpponentTeam;
     }
+
+    public string GetOpponentTag()
+    {
+        if (GetTeam() == Team.BLUE)
+            return Tags.GREEN_WIZARD;
+        return Tags.BLUE_WIZARD;
+    }
 }

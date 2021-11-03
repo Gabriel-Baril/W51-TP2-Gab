@@ -6,7 +6,7 @@ public class NormalState : WizardState
 {
     private GameObject closestTower;
     private GameManager manager;
-
+    [SerializeField] private GameObject lastTargetEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -18,27 +18,48 @@ public class NormalState : WizardState
     void Update()
     {
         closestTower = manager.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
+
+
         Move();
         ManageStateChange();
     }
 
     public override void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, closestTower.transform.position, speed * Time.deltaTime);
+        if (lastTargetEnemy != null)
+        {
+            MoveTo(lastTargetEnemy.transform.position);
+            transform.right = lastTargetEnemy.transform.position - transform.position;
+        }
+        else
+        {
+            MoveTo(closestTower.transform.position);
+            transform.right = closestTower.transform.position - transform.position;
+        }
     }
 
     public override void ManageStateChange()
     {
     }
 
+    private void MoveTo(Vector3 target)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-        if(other.gameObject.CompareTag(Tags.))
+        if(other.gameObject.CompareTag(wizardManager.GetOpponentTag()))
         {
-
+            lastTargetEnemy = other.gameObject;
         }
+    }
 
-        enemyAround = true;
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag(wizardManager.GetOpponentTag()))
+        {
+            lastTargetEnemy = null;
+        }
     }
 }

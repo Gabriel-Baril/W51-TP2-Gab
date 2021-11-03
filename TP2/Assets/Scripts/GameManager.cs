@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         
     }
 
+
     public GameObject FindClosestTower(Vector3 position, Team team)
     {
         if (team == Team.BLUE) return FindClosestTowerFromArray(position, blueTowers);

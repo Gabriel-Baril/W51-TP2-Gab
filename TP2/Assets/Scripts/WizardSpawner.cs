@@ -73,6 +73,7 @@ public class WizardSpawner : MonoBehaviour
                 if (!greenWizards[i].activeSelf)
                 {
                     greenWizards[i].SetActive(true);
+                    greenWizards[i].transform.right = Vector3.right;
 
                     // La position du magicien est déterminée aléatoirement parmi les tours actives.
                     greenWizards[i].transform.position = filteredGreenTowers[Random.Range(0, filteredGreenTowers.Count)].transform.position;
@@ -92,6 +93,7 @@ public class WizardSpawner : MonoBehaviour
                 if (!blueWizards[i].activeSelf)
                 {
                     blueWizards[i].SetActive(true);
+                    blueWizards[i].transform.right = Vector3.right;
 
                     // La position du magicien est déterminée aléatoirement parmi les tours actives.
                     blueWizards[i].transform.position = filteredBlueTowers[Random.Range(0, filteredBlueTowers.Count)].transform.position;
