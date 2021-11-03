@@ -72,11 +72,15 @@ public class GameManager : MonoBehaviour
         return greenTowers;
     }
 
-    public void AddWizardCount()
+    public void AddBlueWizardCount()
     {
-        // Les magiciens apparaîssent en même temps, donc on peut mettre à jour le "ui" en même temps.
         blueWizardsAlive++;
         uiTexts[0].text = blueWizardsAlive.ToString();
+        
+    }
+
+    public void AddGreenWizardCount()
+    {
         greenWizardsAlive++;
         uiTexts[1].text = greenWizardsAlive.ToString();
     }

@@ -83,6 +83,7 @@ public class WizardSpawner : MonoBehaviour
                     spawnPoint.y += WIZARD_SPAWN_OFFSET;
                     greenWizards[i].transform.position = spawnPoint;
 
+                    GameManager.Instance.AddGreenWizardCount();
                     break;
                 }
             }
@@ -103,12 +104,10 @@ public class WizardSpawner : MonoBehaviour
                     spawnPoint.y += WIZARD_SPAWN_OFFSET;
                     blueWizards[i].transform.position = spawnPoint;
 
+                    GameManager.Instance.AddBlueWizardCount();
                     break;
                 }
             }
-
-            // On met à jour le compteur de magiciens.
-            GameManager.Instance.AddWizardCount();
         }
 
         timeSinceLastSpawn += Time.deltaTime;
