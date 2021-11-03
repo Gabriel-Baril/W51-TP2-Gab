@@ -8,6 +8,8 @@ TagManager:
   - Tower
   - GreenTower
   - BlueTower
+  - GreenWizard
+  - BlueWizard
   layers:
   - Default
   - TransparentFX

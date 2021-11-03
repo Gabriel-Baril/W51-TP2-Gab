@@ -6,6 +6,7 @@ public class WizardManager : MonoBehaviour
 {
     private WizardState wizardState;
     [SerializeField] private Team wizardTeam;
+    [SerializeField] private Team wizardOpponentTeam;
 
     public enum WizardStateToSwitch { DEAD, ESCAPE, HIDDEN, INTREPID, NORMAL, SAFE }
 
@@ -53,9 +54,13 @@ public class WizardManager : MonoBehaviour
         }
     }
 
-
     public Team GetTeam()
     {
         return wizardTeam;
+    }
+
+    public Team GetOpponentTeam()
+    {
+        return wizardOpponentTeam;
     }
 }
