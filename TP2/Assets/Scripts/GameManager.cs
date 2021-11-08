@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] blueTowers;
     [SerializeField] GameObject[] greenTowers;
     [SerializeField] Text[] uiTexts;
+    [SerializeField] Button x1Button;
+    [SerializeField] Button x2Button;
+    [SerializeField] Button x4Button;
 
     private int blueWizardsAlive = 0;
     private int greenWizardsAlive = 0;
@@ -31,13 +34,16 @@ public class GameManager : MonoBehaviour
     {
         uiTexts[0].text = blueWizardsAlive.ToString();
         uiTexts[1].text = greenWizardsAlive.ToString();
+
+        x1Button.onClick.AddListener(() => ChangeGameSpeed(1));
+        x2Button.onClick.AddListener(() => ChangeGameSpeed(2));
+        x4Button.onClick.AddListener(() => ChangeGameSpeed(4));
     }
 
-    void Update()
+    void ChangeGameSpeed(int newGameSpeed)
     {
-        
+        Time.timeScale = newGameSpeed;
     }
-
 
     public GameObject FindClosestTower(Vector3 position, Team team)
     {
