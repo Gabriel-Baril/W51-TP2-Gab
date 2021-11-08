@@ -6,7 +6,6 @@ public abstract class WizardState : MonoBehaviour
 {
     protected WizardManager wizardManager;
 
-    protected int healthPoint = 50;
     protected float speed = 3;
     protected bool enemyAround = false;
     protected float targetRadius = 1.5f;

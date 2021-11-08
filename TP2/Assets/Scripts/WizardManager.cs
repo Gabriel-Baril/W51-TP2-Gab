@@ -9,7 +9,7 @@ public class WizardManager : MonoBehaviour
     [SerializeField] private HealthBarBehavior healthBar;
 
     private WizardState wizardState;
-    private int healtPoints;
+    private int healthPoints;
     private int maxHealthPoints;
 
     private const int MIN_HEALTH_POINTS = 50;
@@ -30,17 +30,17 @@ public class WizardManager : MonoBehaviour
     {
         // Maximum est exclusif, donc on fait + 1.
         maxHealthPoints = Random.Range(MIN_HEALTH_POINTS, MAX_HEALTH_POINTS + 1);
-        healtPoints = maxHealthPoints;
+        healthPoints = maxHealthPoints;
 
         healthBar.SetHeatlh(50, 100);
     }
 
     private void TakeDamage(int damage)
     {
-        healtPoints -= damage;
-        healthBar.SetHeatlh(healtPoints, maxHealthPoints);
+        healthPoints -= damage;
+        healthBar.SetHeatlh(healthPoints, maxHealthPoints);
 
-        if(healtPoints <= 0)
+        if(healthPoints <= 0)
         {
             // Magicien est mort.
             gameObject.SetActive(false);

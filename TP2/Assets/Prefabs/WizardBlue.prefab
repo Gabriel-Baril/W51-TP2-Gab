@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3472429107148957331}
   - component: {fileID: 4286063265649551444}
   - component: {fileID: -5599460654303097491}
+  - component: {fileID: 7079403328663152886}
   m_Layer: 0
   m_Name: WizardBlue
   m_TagString: BlueWizard
@@ -227,6 +228,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &7079403328663152886
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2331846160464191389}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.32
 --- !u!1 &4519698252202183894
 GameObject:
   m_ObjectHideFlags: 0

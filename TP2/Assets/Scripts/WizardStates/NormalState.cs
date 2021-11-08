@@ -26,8 +26,6 @@ public class NormalState : WizardState
     void Update()
     {
         closestTower = manager.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
-
-
         Move();
         ManageStateChange();
     }
