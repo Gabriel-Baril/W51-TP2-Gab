@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class HiddenState : WizardState
 {
+
+    private void Awake()
+    {
+        InitState();
+    }
     // Start is called before the first frame update
     void Start()
     {

@@ -13,7 +13,7 @@ public class NormalState : WizardState
 
     private void Awake()
     {
-        wizardManager = GetComponent<WizardManager>();
+        InitState();
         targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
         GetComponent<CircleCollider2D>().radius = targetRadius;
     }
@@ -39,13 +39,13 @@ public class NormalState : WizardState
     {
         if (lastTargetEnemy != null)
         {
-            MoveTo(lastTargetEnemy.transform.position);
-            transform.right = lastTargetEnemy.transform.position - transform.position;
+            MoveTo(lastTargetEnemy);
+            transform.up = lastTargetEnemy.transform.position - transform.position;
         }
         else
         {
-            MoveTo(closestTower.transform.position);
-            transform.right = closestTower.transform.position - transform.position;
+            MoveTo(closestTower);
+            transform.up = closestTower.transform.position - transform.position;
         }
     }
 
@@ -53,9 +53,11 @@ public class NormalState : WizardState
     {
     }
 
-    private void MoveTo(Vector3 target)
+    private void MoveTo(GameObject target)
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        // float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, target.transform.eulerAngles, speed * Time.deltaTime);
+        // transform.eulerAngles = new Vector3(0, angle, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
