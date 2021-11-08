@@ -11,6 +11,11 @@ public class ProjectileDamage : MonoBehaviour
         wizardSource = source;
     }
 
+    public WizardManager GetSource()
+    {
+        return wizardSource;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
