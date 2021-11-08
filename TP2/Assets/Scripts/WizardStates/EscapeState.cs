@@ -6,7 +6,7 @@ public class EscapeState : WizardState
 {
     private void Awake()
     {
-        InitState();
+        base.Awake();
     }
     // Start is called before the first frame update
     void Start()

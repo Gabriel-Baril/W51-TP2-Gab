@@ -11,12 +11,7 @@ public abstract class WizardState : MonoBehaviour
     protected bool enemyAround = false;
     protected float targetRadius = 1.5f;
 
-    private void Awake()
-    {
-        InitState();
-    }
-
-    protected void InitState()
+    protected void Awake()
     {
         wizardManager = GetComponent<WizardManager>();
     }
@@ -27,12 +22,12 @@ public abstract class WizardState : MonoBehaviour
     public abstract void Move();
     public abstract void ManageStateChange();
     
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         enemyAround = true;
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected void OnTriggerExit2D(Collider2D collision)
     {
         enemyAround = false;
     }

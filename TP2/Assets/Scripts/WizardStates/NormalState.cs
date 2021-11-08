@@ -13,7 +13,7 @@ public class NormalState : WizardState
 
     private void Awake()
     {
-        InitState();
+        base.Awake();
         targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
         GetComponent<CircleCollider2D>().radius = targetRadius;
     }
@@ -34,6 +34,7 @@ public class NormalState : WizardState
 
     public override void Shoot()
     {
+
     }
     public override void Move()
     {
@@ -62,6 +63,7 @@ public class NormalState : WizardState
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        base.OnTriggerEnter2D(other);
         if(other.gameObject.CompareTag(wizardManager.GetOpponentTag()))
         {
             lastTargetEnemy = other.gameObject;
@@ -70,6 +72,7 @@ public class NormalState : WizardState
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        base.OnTriggerExit2D(other);
         if (other.gameObject.CompareTag(wizardManager.GetOpponentTag()))
         {
             lastTargetEnemy = null;

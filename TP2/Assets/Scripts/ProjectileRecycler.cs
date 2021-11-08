@@ -31,7 +31,7 @@ public class ProjectileRecycler : MonoBehaviour
         }
     }
 
-    void SpawnProjectile(WizardManager source, float damage)
+    void SpawnProjectile(WizardManager source)
     {
         GameObject projectile = null;
         if (source.GetTeam() == Team.BLUE)
@@ -46,7 +46,7 @@ public class ProjectileRecycler : MonoBehaviour
         if(projectile != null)
         {
             projectile.SetActive(true);
-
+            projectile.GetComponent<ProjectileDamage>().SetSource(source);
         }
     }
 
