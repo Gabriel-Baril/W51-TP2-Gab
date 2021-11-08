@@ -10,6 +10,8 @@ TagManager:
   - BlueTower
   - GreenWizard
   - BlueWizard
+  - BlueProjectile
+  - GreenProjectile
   layers:
   - Default
   - TransparentFX
@@ -55,4 +57,7 @@ TagManager:
     locked: 0
   - name: Wizard
     uniqueID: 879743999
+    locked: 0
+  - name: Projectile
+    uniqueID: 2203106643
     locked: 0

@@ -13,7 +13,11 @@ public abstract class WizardState : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("WizardState: ", wizardManager);
+        InitState();
+    }
+
+    protected void InitState()
+    {
         wizardManager = GetComponent<WizardManager>();
     }
 

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SafeState : WizardState
 {
+    private void Awake()
+    {
+        InitState();
+    }
     // Start is called before the first frame update
     void Start()
     {

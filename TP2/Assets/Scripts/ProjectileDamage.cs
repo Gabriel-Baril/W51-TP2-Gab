@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EscapeState : WizardState
+public class ProjectileDamage : MonoBehaviour
 {
-    private void Awake()
+    private WizardManager wizardSource;
+
+    public void SetSource(WizardManager source)
     {
-        InitState();
+        wizardSource = source;
     }
+
+    public WizardManager GetSource()
+    {
+        return wizardSource;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +26,5 @@ public class EscapeState : WizardState
     void Update()
     {
         
-    }
-
-    public override void Shoot()
-    {
-    }
-    public override void Move()
-    {
-    }
-
-    public override void ManageStateChange()
-    {
     }
 }
