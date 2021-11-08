@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class ProjectileRecycler : MonoBehaviour
 {
+    public static ProjectileRecycler Instance;
+
     private const int PROJECTILE_SPEED = 20;
-    private const int PROJECTILE_POOL_SIZE = 20;
+    private const int PROJECTILE_POOL_SIZE = 50;
 
     private GameObject[] greenProjectilesPool;
     private GameObject[] blueProjectilesPool;
     [SerializeField] private GameObject greenProjectileObject;
     [SerializeField] private GameObject blueProjectileObject;
 
-
-    [SerializeField] private GameManager gameManager;
-
     private void Awake()
     {
+        InitInstance();
+
         greenProjectilesPool = new GameObject[PROJECTILE_POOL_SIZE];
         blueProjectilesPool = new GameObject[PROJECTILE_POOL_SIZE];
 
@@ -31,9 +32,15 @@ public class ProjectileRecycler : MonoBehaviour
         }
     }
 
-    void SpawnProjectile(WizardManager source, float damage)
+    private void Update()
+    {
+        
+    }
+
+    public void SpawnProjectile(WizardManager source, float damage, Vector2 direction)
     {
         GameObject projectile = null;
+        
         if (source.GetTeam() == Team.BLUE)
         {
             projectile = FindFirstDeactivated(blueProjectilesPool);
@@ -43,18 +50,18 @@ public class ProjectileRecycler : MonoBehaviour
             projectile = FindFirstDeactivated(greenProjectilesPool);
         }
 
-
         if(projectile != null)
         {
             ProjectileDamage projDamage = projectile.GetComponent<ProjectileDamage>();
-
             projectile.SetActive(true);
+            projectile.transform.position = source.transform.position;
+            projectile.GetComponent<Rigidbody2D>().velocity = direction;
             projDamage.SetSource(source);
             projDamage.SetDamage(damage);
         }
     }
 
-    GameObject FindFirstDeactivated(GameObject[] projectilePool)
+    private GameObject FindFirstDeactivated(GameObject[] projectilePool)
     {
         for (int i = 0; i < projectilePool.Length; i++)
         {
@@ -62,5 +69,17 @@ public class ProjectileRecycler : MonoBehaviour
                 return projectilePool[i];
         }
         return null;
+    }
+
+    private void InitInstance()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 }

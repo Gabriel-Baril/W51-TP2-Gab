@@ -9,7 +9,7 @@ public abstract class WizardState : MonoBehaviour
     protected float speed = 3;
     protected bool enemyAround = false;
     protected float targetRadius = 1.5f;
-
+    
     protected void Awake()
     {
         wizardManager = GetComponent<WizardManager>();

@@ -5,11 +5,16 @@ using UnityEngine;
 public class NormalState : WizardState
 {
     private const float MIN_TARGET_RADIUS = 1.5f;
-    private const float MAX_TARGET_RADIUS = 4.0f;
+    private const float MAX_TARGET_RADIUS = 3.0f;
+
+    private const float MIN_DAMAGE = 3.0f;
+    private const float MAX_DAMAGE = 10.0f;
 
     private GameObject closestTower;
-    private GameManager manager;
     [SerializeField] private GameObject lastTargetEnemy;
+
+    private float timeSinceLastShot = 0;
+    private float shotCooldown = 0.5f; // 0.5 seconde entre chaque tir
 
     private void Awake()
     {
@@ -18,33 +23,36 @@ public class NormalState : WizardState
         GetComponent<CircleCollider2D>().radius = targetRadius;
     }
 
-    void Start()
-    {
-        manager = GameManager.Instance;
-    }
-
     void Update()
     {
-        closestTower = manager.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
+        if (lastTargetEnemy != null && timeSinceLastShot > shotCooldown)
+        {
+            Shoot();
+        }
+
         Move();
         ManageStateChange();
+
+        timeSinceLastShot += Time.deltaTime;
+    }
+
+    private float RandomDamageRange()
+    {
+        return Random.Range(MIN_DAMAGE, MAX_DAMAGE);
     }
 
     public override void Shoot()
     {
-
+        ProjectileRecycler.Instance.SpawnProjectile(wizardManager, RandomDamageRange(), lastTargetEnemy.transform.position - transform.position);
+        timeSinceLastShot = 0;
     }
+
     public override void Move()
     {
-        if (lastTargetEnemy != null)
+        if (lastTargetEnemy == null)
         {
-            MoveTo(lastTargetEnemy);
-            transform.up = lastTargetEnemy.transform.position - transform.position;
-        }
-        else
-        {
+            closestTower = GameManager.Instance.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
             MoveTo(closestTower);
-            transform.up = closestTower.transform.position - transform.position;
         }
     }
 
@@ -55,8 +63,20 @@ public class NormalState : WizardState
     private void MoveTo(GameObject target)
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        // float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, target.transform.eulerAngles, speed * Time.deltaTime);
-        // transform.eulerAngles = new Vector3(0, angle, 0);
+        LookAt(target);
+    }
+
+    private void LookAt(GameObject target)
+    {
+        transform.up = target.transform.position - transform.position;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // if(collision.gameObject.CompareTag())
+        // {
+        // 
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -65,6 +85,7 @@ public class NormalState : WizardState
         if(other.gameObject.CompareTag(wizardManager.GetOpponentTag()))
         {
             lastTargetEnemy = other.gameObject;
+            LookAt(lastTargetEnemy);
         }
     }
 
