@@ -16,6 +16,11 @@ public class HiddenState : WizardState
         
     }
 
+
+    public override void Shoot()
+    {
+    }
+
     public override void Move()
     {
     }

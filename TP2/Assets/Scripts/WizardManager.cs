@@ -18,6 +18,7 @@ public class WizardManager : MonoBehaviour
 
     private void Awake()
     {
+        // ChangeWizardState(WizardStateToSwitch.NORMAL);
         wizardState = GetComponent<WizardState>();
     }
 

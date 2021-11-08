@@ -16,6 +16,9 @@ public class DeadState : WizardState
         
     }
 
+    public override void Shoot()
+    {
+    }
     public override void Move()
     {
     }

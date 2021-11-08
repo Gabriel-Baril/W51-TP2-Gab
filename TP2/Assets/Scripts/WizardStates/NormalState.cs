@@ -13,6 +13,7 @@ public class NormalState : WizardState
 
     private void Awake()
     {
+        wizardManager = GetComponent<WizardManager>();
         targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
         GetComponent<CircleCollider2D>().radius = targetRadius;
     }
@@ -31,6 +32,9 @@ public class NormalState : WizardState
         ManageStateChange();
     }
 
+    public override void Shoot()
+    {
+    }
     public override void Move()
     {
         if (lastTargetEnemy != null)
