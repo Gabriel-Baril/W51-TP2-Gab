@@ -16,7 +16,15 @@ public class GameManager : MonoBehaviour
 
     private int blueWizardsAlive = 0;
     private int greenWizardsAlive = 0;
+    private string blankText = "";
+    private string blueTeamWinsMessage = "L'équipe bleue a gagné !";
+    private Color blue = Color.blue;
+    private string greenTeamWinsMessage = "L'équipe verte a gagné !";
+    private Color green = Color.green;
 
+    private int minSpeed = 1;
+    private int mediumSpeed = 2;
+    private int maxSpeed = 4;
 
     private void Awake()
     {
@@ -34,10 +42,11 @@ public class GameManager : MonoBehaviour
     {
         uiTexts[0].text = blueWizardsAlive.ToString();
         uiTexts[1].text = greenWizardsAlive.ToString();
+        uiTexts[2].text = blankText;
 
-        x1Button.onClick.AddListener(() => ChangeGameSpeed(1));
-        x2Button.onClick.AddListener(() => ChangeGameSpeed(2));
-        x4Button.onClick.AddListener(() => ChangeGameSpeed(4));
+        x1Button.onClick.AddListener(() => ChangeGameSpeed(minSpeed));
+        x2Button.onClick.AddListener(() => ChangeGameSpeed(mediumSpeed));
+        x4Button.onClick.AddListener(() => ChangeGameSpeed(maxSpeed));
     }
 
     void ChangeGameSpeed(int newGameSpeed)
