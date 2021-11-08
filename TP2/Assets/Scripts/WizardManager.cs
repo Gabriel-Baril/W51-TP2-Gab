@@ -6,10 +6,11 @@ public class WizardManager : MonoBehaviour
 {
     [SerializeField] private Team wizardTeam;
     [SerializeField] private Team wizardOpponentTeam;
+    [SerializeField] private HealthBarBehavior healthBar;
 
     private WizardState wizardState;
     private int healtPoints;
-    private int startingHealthPoints;
+    private int maxHealthPoints;
 
     private const int MIN_HEALTH_POINTS = 50;
     private const int MAX_HEALTH_POINTS = 100;
@@ -28,13 +29,17 @@ public class WizardManager : MonoBehaviour
     private void OnEnable()
     {
         // Maximum est exclusif, donc on fait + 1.
-        startingHealthPoints = Random.Range(MIN_HEALTH_POINTS, MAX_HEALTH_POINTS + 1);
-        healtPoints = startingHealthPoints;
+        maxHealthPoints = Random.Range(MIN_HEALTH_POINTS, MAX_HEALTH_POINTS + 1);
+        healtPoints = maxHealthPoints;
+
+        healthBar.SetHeatlh(50, 100);
     }
 
     private void TakeDamage(int damage)
     {
         healtPoints -= damage;
+        healthBar.SetHeatlh(healtPoints, maxHealthPoints);
+
         if(healtPoints <= 0)
         {
             // Magicien est mort.
@@ -100,16 +105,5 @@ public class WizardManager : MonoBehaviour
         if (GetTeam() == Team.BLUE)
             return Tags.GREEN_WIZARD;
         return Tags.BLUE_WIZARD;
-    }
-    /// GETTERS
-    
-    public int GetCurrentHealth()
-    {
-        return healtPoints;
-    }
-
-    public int GetStartingHealth()
-    {
-        return startingHealthPoints;
     }
 }
