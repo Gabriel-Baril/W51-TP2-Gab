@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class NormalState : WizardState
 {
+    private const float MIN_TARGET_RADIUS = 1.5f;
+    private const float MAX_TARGET_RADIUS = 4.0f;
+
     private GameObject closestTower;
     private GameManager manager;
     [SerializeField] private GameObject lastTargetEnemy;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
+        GetComponent<CircleCollider2D>().radius = targetRadius;
+    }
+
     void Start()
     {
         manager = GameManager.Instance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         closestTower = manager.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
