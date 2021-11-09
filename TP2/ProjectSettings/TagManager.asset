@@ -49,14 +49,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Terrain
-    uniqueID: 1623424817
-    locked: 0
   - name: Tower
     uniqueID: 3799503629
     locked: 0
   - name: Wizard
     uniqueID: 879743999
+    locked: 0
+  - name: Terrain
+    uniqueID: 1623424817
     locked: 0
   - name: Projectile
     uniqueID: 2203106643

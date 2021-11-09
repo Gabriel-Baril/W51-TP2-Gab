@@ -334,6 +334,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1702613136}
     m_Modifications:
+    - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1623424817
+      objectReference: {fileID: 0}
     - target: {fileID: 2314203264070288776, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_Name
       value: BottomRightForest
@@ -810,6 +818,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1702613136}
     m_Modifications:
+    - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1623424817
+      objectReference: {fileID: 0}
     - target: {fileID: 2314203264070288776, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_Name
       value: TopRightForest
@@ -1945,6 +1961,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1702613136}
     m_Modifications:
+    - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1623424817
+      objectReference: {fileID: 0}
     - target: {fileID: 2314203264070288776, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_Name
       value: BottomLeftForest
@@ -2570,6 +2594,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1702613136}
     m_Modifications:
+    - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1623424817
+      objectReference: {fileID: 0}
     - target: {fileID: 2314203264070288776, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_Name
       value: TopLeftForest

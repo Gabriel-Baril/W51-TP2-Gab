@@ -6,7 +6,6 @@ public class ProjectileRecycler : MonoBehaviour
 {
     public static ProjectileRecycler Instance;
 
-    private const int PROJECTILE_SPEED = 20;
     private const int PROJECTILE_POOL_SIZE = 50;
 
     private GameObject[] greenProjectilesPool;

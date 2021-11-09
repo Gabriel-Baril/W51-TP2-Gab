@@ -100,7 +100,7 @@ public class WizardManager : MonoBehaviour
         return wizardOpponentTeam;
     }
 
-    public string GetOpponentTag()
+    public string GetOpponentWizardTag()
     {
         if (GetTeam() == Team.BLUE)
             return Tags.GREEN_WIZARD;
@@ -113,13 +113,17 @@ public class WizardManager : MonoBehaviour
             return Tags.GREEN_PROJECTILE;
         return Tags.BLUE_PROJECTILE;
     }
+    public string GetOpponentTowerTag()
+    {
+        if (GetTeam() == Team.BLUE)
+            return Tags.GREEN_TOWER;
+        return Tags.BLUE_TOWER;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.CompareTag(GetOpponentProjectileTag()))
         {
-            Debug.Log("IN");
             collision.gameObject.SetActive(false);
             TakeDamage(collision.gameObject.GetComponent<ProjectileDamage>().GetDamage());
         }

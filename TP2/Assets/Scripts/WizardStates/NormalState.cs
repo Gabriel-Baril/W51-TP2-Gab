@@ -79,7 +79,7 @@ public class NormalState : WizardState
     private void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
-        if(other.gameObject.CompareTag(wizardManager.GetOpponentTag()))
+        if(other.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()) || other.gameObject.CompareTag(wizardManager.GetOpponentTowerTag()))
         {
             lastTargetEnemy = other.gameObject;
             LookAt(lastTargetEnemy);
@@ -89,7 +89,7 @@ public class NormalState : WizardState
     private void OnTriggerExit2D(Collider2D other)
     {
         base.OnTriggerExit2D(other);
-        if (other.gameObject.CompareTag(wizardManager.GetOpponentTag()))
+        if (other.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))
         {
             lastTargetEnemy = null;
         }

@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class ProjectileDamage : MonoBehaviour
 {
+    private const int PROJECTILE_SPEED = 10;
+    private const int LIFE_SPAN = 2; // Durée de vie du projectile en secondes
+
     private WizardManager wizardSource;
     private int damage;
     private Vector3 direction;
+    private float timeSinceLastActivation = 0;
 
     private void Update()
     {
-        transform.position += direction * Time.deltaTime;
+        if (timeSinceLastActivation >= LIFE_SPAN)
+        {
+            gameObject.SetActive(false);
+            timeSinceLastActivation = 0;
+            return;
+        }
+        transform.position += direction * Time.deltaTime * PROJECTILE_SPEED;
+        timeSinceLastActivation += Time.deltaTime;
     }
 
     public void SetDamage(int newDamage)
