@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2958258961904778887}
   - component: {fileID: -5486115544775420251}
   - component: {fileID: 8406653942736713263}
+  - component: {fileID: 6545913433519797639}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Tower
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -495463667
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f2ba23fab0a9ab44f96c2bd28ca037b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerHealth: 100
+  towerTeam: 0
 --- !u!70 &8406653942736713263
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -113,3 +115,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.05, y: 1.38}
   m_Direction: 0
+--- !u!50 &6545913433519797639
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408315501013491177}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

@@ -36,80 +36,44 @@ public class WizardSpawner : MonoBehaviour
 
     private void Update()
     {
-        ManageWizardSpawn();
+        ManageSpawn();
+        timeSinceLastSpawn += Time.deltaTime;
     }
 
-    private void ManageWizardSpawn()
+    private void ManageSpawn()
     {
-        if(timeSinceLastSpawn >= timeBetweenSpawns)
+        if (timeSinceLastSpawn >= timeBetweenSpawns)
         {
             timeSinceLastSpawn = 0;
+            ManageWizardSpawn(Team.GREEN, greenWizards);
+            ManageWizardSpawn(Team.BLUE, blueWizards);
+        }
+    }
+    private void ManageWizardSpawn(Team team, GameObject[] wizardPool)
+    {
+        List<GameObject> filteredTowers = GameManager.Instance.GetFilteredTowers(team);
 
-            // On détermine l'état des tours.
-            GameObject[] greenTowers = gameManager.GetGreenTowers();
-            List<GameObject> filteredGreenTowers = new List<GameObject>();
+        if (filteredTowers.Count <= 0)
+            return;
 
-            GameObject[] blueTowers = gameManager.GetBlueTowers();
-            List<GameObject> filteredBlueTowers = new List<GameObject>();
-
-            // Une seule boucle, il y aura toujours la même quantité de tours dans chaque équipe.
-            for (int i = 0; i < greenTowers.Length; i++)
+        for (int i = 0; i < maxNumberOfWizardsPerTeam; i++)
+        {
+            if (!wizardPool[i].activeSelf)
             {
-                if (greenTowers[i].GetComponent<TowerBehavior>().IsAlive())
-                {
-                    filteredGreenTowers.Add(greenTowers[i]);
-                }
+                wizardPool[i].SetActive(true);
+                wizardPool[i].transform.right = Vector3.right;
 
-                if (blueTowers[i].GetComponent<TowerBehavior>().IsAlive())
-                {
-                    filteredBlueTowers.Add(blueTowers[i]);
-                }
-            }
+                // La position du magicien est déterminée aléatoirement parmi les tours actives.
+                wizardPool[i].transform.position = filteredTowers[Random.Range(0, filteredTowers.Count)].transform.position;
 
-            // Spawning des magiciens
-            // Magicien vert
-            for (int i = 0; i < maxNumberOfWizardsPerTeam; i++)
-            {
-                if (!greenWizards[i].activeSelf)
-                {
-                    greenWizards[i].SetActive(true);
-                    greenWizards[i].transform.right = Vector3.right;
+                // On applique un offset à la position du magicien.
+                Vector3 spawnPoint = wizardPool[i].transform.position;
+                spawnPoint.y += WIZARD_SPAWN_OFFSET_Y;
+                wizardPool[i].transform.position = spawnPoint;
 
-                    // La position du magicien est déterminée aléatoirement parmi les tours actives.
-                    greenWizards[i].transform.position = filteredGreenTowers[Random.Range(0, filteredGreenTowers.Count)].transform.position;
-                    
-                    // On applique un offset à la position du magicien.
-                    Vector3 spawnPoint = greenWizards[i].transform.position;
-                    spawnPoint.y += WIZARD_SPAWN_OFFSET_Y;
-                    greenWizards[i].transform.position = spawnPoint;
-
-                    GameManager.Instance.AddGreenWizardCount();
-                    break;
-                }
-            }
-
-            // Magicien bleu
-            for (int i = 0; i < maxNumberOfWizardsPerTeam; i++)
-            {
-                if (!blueWizards[i].activeSelf)
-                {
-                    blueWizards[i].SetActive(true);
-                    blueWizards[i].transform.right = Vector3.right;
-
-                    // La position du magicien est déterminée aléatoirement parmi les tours actives.
-                    blueWizards[i].transform.position = filteredBlueTowers[Random.Range(0, filteredBlueTowers.Count)].transform.position;
-
-                    // On applique un offset à la position du magicien.
-                    Vector3 spawnPoint = blueWizards[i].transform.position;
-                    spawnPoint.y += WIZARD_SPAWN_OFFSET_Y;
-                    blueWizards[i].transform.position = spawnPoint;
-
-                    GameManager.Instance.AddBlueWizardCount();
-                    break;
-                }
+                GameManager.Instance.AddWizardCount(team);
+                break;
             }
         }
-
-        timeSinceLastSpawn += Time.deltaTime;
     }
 }

@@ -28,7 +28,6 @@ public class HealthBarBehavior : MonoBehaviour
 
         slider.value = health;
         slider.maxValue = maxHealth;
-        Debug.Log("Health setted");
         // Changement de la couleur
         /*if ((health / maxHealth) >= highColorMinValue)
         {

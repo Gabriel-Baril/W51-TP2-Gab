@@ -56,21 +56,23 @@ public class GameManager : MonoBehaviour
 
     public GameObject FindClosestTower(Vector3 position, Team team)
     {
-        if (team == Team.BLUE) return FindClosestTowerFromArray(position, blueTowers);
-        if (team == Team.GREEN) return FindClosestTowerFromArray(position, greenTowers);
-        return null;
+        return FindClosestTowerFromArray(position, team);
     }
 
-    private GameObject FindClosestTowerFromArray(Vector3 position, GameObject[] towers)
+    private GameObject FindClosestTowerFromArray(Vector3 position, Team team)
     {
-        GameObject closestTower = towers[0];
+        List<GameObject> filteredTowers = GetFilteredTowers(team);
+        if (filteredTowers.Count <= 0)
+            return null;
+
+        GameObject closestTower = filteredTowers[0];
         float minDistance = Vector3.Distance(position, closestTower.transform.position);
         
-        for(int i = 1; i < towers.Length; i++)
+        for(int i = 1; i < filteredTowers.Count; i++)
         {
-            if (Vector3.Distance(position, towers[i].transform.position) < minDistance)
+            if (Vector3.Distance(position, filteredTowers[i].transform.position) < minDistance)
             {
-                closestTower = towers[i];
+                closestTower = filteredTowers[i];
             }
         }
 
@@ -82,16 +84,40 @@ public class GameManager : MonoBehaviour
         return blueTowers;
     }
 
+    public List<GameObject> GetFilteredTowers(Team team)
+    {
+        if (team == Team.BLUE) return GetFilteredTowersFromArray(blueTowers);
+        if (team == Team.GREEN) return GetFilteredTowersFromArray(greenTowers);
+        return null;
+    }
+
+    public List<GameObject> GetFilteredTowersFromArray(GameObject[] towers)
+    {
+        List<GameObject> filteredTowers = new List<GameObject>();
+        for (int i = 0; i < towers.Length; i++)
+        {
+            if (towers[i].GetComponent<TowerBehavior>().IsAlive())
+            {
+                filteredTowers.Add(towers[i]);
+            }
+        }
+        return filteredTowers;
+    }
+
     public GameObject[] GetGreenTowers()
     {
         return greenTowers;
+    }
+    public void AddWizardCount(Team team)
+    {
+        if (team == Team.BLUE) AddBlueWizardCount();
+        else if (team == Team.GREEN) AddGreenWizardCount();
     }
 
     public void AddBlueWizardCount()
     {
         blueWizardsAlive++;
         uiTexts[0].text = blueWizardsAlive.ToString();
-        
     }
 
     public void AddGreenWizardCount()

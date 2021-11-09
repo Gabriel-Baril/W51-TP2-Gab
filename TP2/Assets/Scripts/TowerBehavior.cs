@@ -9,6 +9,14 @@ public class TowerBehavior : MonoBehaviour
     [SerializeField] int towerHealth = DEFAULT_TOWER_HEALTH;
     [SerializeField] private Team towerTeam;
 
+    private void Update()
+    {
+        if(towerHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     public bool IsAlive()
     {
         return towerHealth > 0;
@@ -29,7 +37,7 @@ public class TowerBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag(GetOpponentProjectileTag()))
         {
             collision.gameObject.SetActive(false);
-            // TakeDamage(collision.gameObject.GetComponent<ProjectileDamage>().GetDamage());
+            towerHealth -= collision.gameObject.GetComponent<ProjectileDamage>().GetDamage();
         }
     }
 }

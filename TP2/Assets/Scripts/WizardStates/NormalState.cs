@@ -25,7 +25,7 @@ public class NormalState : WizardState
 
     void Update()
     {
-        if (lastTargetEnemy != null && timeSinceLastShot > shotCooldown)
+        if (lastTargetEnemy != null && lastTargetEnemy.activeSelf && timeSinceLastShot > shotCooldown)
         {
             Shoot();
         }
