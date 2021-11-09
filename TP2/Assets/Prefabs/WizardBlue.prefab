@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.49019608}
+  m_Color: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0.49019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -394,9 +394,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 5960529786168082123}
-  low: {r: 1, g: 0, b: 0, a: 0}
-  medium: {r: 1, g: 1, b: 0, a: 0}
-  high: {r: 0, g: 1, b: 0, a: 0}
+  low: {r: 1, g: 0, b: 0, a: 1}
+  medium: {r: 1, g: 1, b: 0, a: 1}
+  high: {r: 0, g: 1, b: 0, a: 1}
   offset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &6161335849232303953
 GameObject:
@@ -521,8 +521,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 35, y: 0}
-  m_SizeDelta: {x: 80, y: 0}
+  m_AnchoredPosition: {x: 20.8845, y: 0}
+  m_SizeDelta: {x: 41.7689, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3456334575578027377
 CanvasRenderer:
@@ -531,7 +531,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6478124011684453665}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!114 &7854094063121780071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0

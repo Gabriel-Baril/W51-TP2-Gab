@@ -518,6 +518,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 687254974}
     m_Modifications:
+    - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: towerTeam
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2958258961904778887, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -677,22 +681,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6408315501013491177, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
   m_PrefabInstance: {fileID: 970975829}
   m_PrefabAsset: {fileID: 0}
---- !u!70 &579116843
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579116840}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.00000023841858}
-  m_Size: {x: 1.05, y: 1.38}
-  m_Direction: 0
 --- !u!1 &584368611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,6 +1685,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 687254974}
     m_Modifications:
     - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: towerTeam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: towerColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -1868,6 +1860,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 687254974}
     m_Modifications:
+    - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: towerTeam
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2958258961904778887, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -2466,7 +2462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 827497439399323601, guid: 3d4ca9afec620e440a7a0bae1253588e, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 827497439399323601, guid: 3d4ca9afec620e440a7a0bae1253588e, type: 3}
       propertyPath: m_SortingLayerID

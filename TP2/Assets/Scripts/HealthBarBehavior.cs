@@ -42,7 +42,7 @@ public class HealthBarBehavior : MonoBehaviour
             slider.fillRect.GetComponentInChildren<Image>().color = low;
         }*/
         
-        // slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, slider.normalizedValue);
+        slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, slider.normalizedValue);
 
     }
 }
