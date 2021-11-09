@@ -37,7 +37,7 @@ public class ProjectileRecycler : MonoBehaviour
         
     }
 
-    public void SpawnProjectile(WizardManager source, float damage, Vector2 direction)
+    public void SpawnProjectile(WizardManager source, int damage, Vector2 direction)
     {
         GameObject projectile = null;
         
@@ -54,8 +54,8 @@ public class ProjectileRecycler : MonoBehaviour
         {
             ProjectileDamage projDamage = projectile.GetComponent<ProjectileDamage>();
             projectile.SetActive(true);
-            projectile.transform.position = source.transform.position;
-            projectile.GetComponent<Rigidbody2D>().velocity = direction;
+            projectile.transform.position = source.transform.position + new Vector3(direction.x, direction.y, 0);
+            projDamage.SetDirection(direction);
             projDamage.SetSource(source);
             projDamage.SetDamage(damage);
         }

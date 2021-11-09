@@ -106,4 +106,22 @@ public class WizardManager : MonoBehaviour
             return Tags.GREEN_WIZARD;
         return Tags.BLUE_WIZARD;
     }
+
+    public string GetOpponentProjectileTag()
+    {
+        if (GetTeam() == Team.BLUE)
+            return Tags.GREEN_PROJECTILE;
+        return Tags.BLUE_PROJECTILE;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag(GetOpponentProjectileTag()))
+        {
+            Debug.Log("IN");
+            collision.gameObject.SetActive(false);
+            TakeDamage(collision.gameObject.GetComponent<ProjectileDamage>().GetDamage());
+        }
+    }
 }

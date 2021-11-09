@@ -6,4 +6,6 @@
     public const string BLUE_TOWER = "BlueTower";
     public const string GREEN_WIZARD = "GreenWizard";
     public const string BLUE_WIZARD = "BlueWizard";
+    public const string GREEN_PROJECTILE = "GreenProjectile";
+    public const string BLUE_PROJECTILE = "BlueProjectile";
 }

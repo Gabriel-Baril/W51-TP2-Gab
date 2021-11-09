@@ -36,15 +36,20 @@ public class NormalState : WizardState
         timeSinceLastShot += Time.deltaTime;
     }
 
-    private float RandomDamageRange()
+    private int RandomDamageRange()
     {
-        return Random.Range(MIN_DAMAGE, MAX_DAMAGE);
+        return (int)Random.Range(MIN_DAMAGE, MAX_DAMAGE);
     }
 
     public override void Shoot()
     {
-        ProjectileRecycler.Instance.SpawnProjectile(wizardManager, RandomDamageRange(), lastTargetEnemy.transform.position - transform.position);
+        ProjectileRecycler.Instance.SpawnProjectile(wizardManager, RandomDamageRange(), GetDirectionVector(lastTargetEnemy));
         timeSinceLastShot = 0;
+    }
+
+    private Vector3 GetDirectionVector(GameObject target)
+    {
+        return (target.transform.position - transform.position).normalized;
     }
 
     public override void Move()
@@ -69,14 +74,6 @@ public class NormalState : WizardState
     private void LookAt(GameObject target)
     {
         transform.up = target.transform.position - transform.position;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // if(collision.gameObject.CompareTag())
-        // {
-        // 
-        // }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

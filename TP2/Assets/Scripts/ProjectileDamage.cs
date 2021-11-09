@@ -5,9 +5,15 @@ using UnityEngine;
 public class ProjectileDamage : MonoBehaviour
 {
     private WizardManager wizardSource;
-    private float damage;
+    private int damage;
+    private Vector3 direction;
 
-    public void SetDamage(float newDamage)
+    private void Update()
+    {
+        transform.position += direction * Time.deltaTime;
+    }
+
+    public void SetDamage(int newDamage)
     {
         damage = newDamage;
     }
@@ -15,13 +21,17 @@ public class ProjectileDamage : MonoBehaviour
     {
         wizardSource = source;
     }
+    public void SetDirection(Vector3 direction)
+    {
+        this.direction = direction;
+    }
 
     public WizardManager GetSource()
     {
         return wizardSource;
     }
 
-    public float GetDamage()
+    public int GetDamage()
     {
         return damage;
     }
