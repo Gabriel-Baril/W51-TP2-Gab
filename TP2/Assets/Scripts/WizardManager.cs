@@ -32,7 +32,7 @@ public class WizardManager : MonoBehaviour
         maxHealthPoints = Random.Range(MIN_HEALTH_POINTS, MAX_HEALTH_POINTS + 1);
         healthPoints = maxHealthPoints;
 
-        healthBar.SetHeatlh(50, 100);
+        healthBar.SetHeatlh(healthPoints, maxHealthPoints);
     }
 
     private void TakeDamage(int damage)
