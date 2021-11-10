@@ -21,7 +21,7 @@ public class HealthBarBehavior : MonoBehaviour
         slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset);
     }
 
-    public void SetHeatlh(float health, float maxHealth)
+    public void SetHealth(float health, float maxHealth)
     {
         // Actif seulement si le magicien a perdu de la vie
         slider.gameObject.SetActive(health < maxHealth);
