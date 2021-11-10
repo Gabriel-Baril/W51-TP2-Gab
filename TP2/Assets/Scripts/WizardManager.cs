@@ -11,6 +11,7 @@ public class WizardManager : MonoBehaviour
     private WizardState wizardState;
     private int healthPoints;
     private int maxHealthPoints;
+    private int nbOfKills = 0;
 
     private const int MIN_HEALTH_POINTS = 50;
     private const int MAX_HEALTH_POINTS = 100;
@@ -35,20 +36,23 @@ public class WizardManager : MonoBehaviour
         healthBar.SetHeatlh(healthPoints, maxHealthPoints);
     }
 
-    private void TakeDamage(int damage)
+    private void TakeDamage(int damage, WizardManager attacker)
     {
         healthPoints -= damage;
         healthBar.SetHeatlh(healthPoints, maxHealthPoints);
 
-        if(healthPoints <= 0)
+        if (healthPoints <= 0)
         {
             // Magicien est mort.
             gameObject.SetActive(false);
             GameManager.Instance.RemoveWizardCount(wizardTeam);
-
-            // A FAIRE:
-            // AJOUTER UN KILL AU MAGICIEN QUI A ATTAQU�
+            attacker.AddKill();
         }
+    }
+
+    private void AddKill()
+    {
+        nbOfKills++;
     }
 
     public void ChangeWizardState(WizardStateToSwitch nextState)
@@ -125,6 +129,21 @@ public class WizardManager : MonoBehaviour
         if (GetTeam() == Team.BLUE)
             return Tags.BLUE_TOWER;
         return Tags.GREEN_TOWER;
+    } 
+
+        public int GetCurrentHealthPoints()
+    {
+        return healthPoints;
+    }
+
+    public int GetMaxHealthPoints()
+    {
+        return maxHealthPoints;
+    }
+
+    public int GetNumberbOfKills()
+    {
+        return nbOfKills;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -132,7 +151,7 @@ public class WizardManager : MonoBehaviour
         if (collision.gameObject.CompareTag(GetOpponentProjectileTag()))
         {
             collision.gameObject.SetActive(false);
-            TakeDamage(collision.gameObject.GetComponent<ProjectileDamage>().GetDamage());
+            TakeDamage(collision.gameObject.GetComponent<ProjectileDamage>().GetDamage(), collision.gameObject.GetComponent<WizardManager>());
         }
     }
 }
