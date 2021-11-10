@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class NormalState : WizardState
 {
-    [SerializeField] private GameObject lastTargetEnemy;
-
+    private GameObject lastTargetEnemy;
     private GameObject closestTower;
 
     private float timeSinceLastShot = 0;
-    private float shotCooldown = 0.5f; // 0.5 seconde entre chaque tir
 
+    private const float ATTACK_SPEED = 0.5f; // 2 tirs / seconde
     private const float MIN_TARGET_RADIUS = 1.5f;
     private const float MAX_TARGET_RADIUS = 3.0f;
     private const float MIN_DAMAGE = 3.0f;
@@ -27,14 +26,14 @@ public class NormalState : WizardState
 
     void Update()
     {
-        if (lastTargetEnemy != null && lastTargetEnemy.activeSelf && timeSinceLastShot > shotCooldown)
+        ManageStateChange();
+
+        if (lastTargetEnemy != null && lastTargetEnemy.activeSelf && timeSinceLastShot > ATTACK_SPEED)
         {
             Shoot();
         }
 
         Move();
-        ManageStateChange();
-
         timeSinceLastShot += Time.deltaTime;
     }
 
