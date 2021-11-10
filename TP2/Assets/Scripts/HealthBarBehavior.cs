@@ -29,20 +29,20 @@ public class HealthBarBehavior : MonoBehaviour
         slider.value = health;
         slider.maxValue = maxHealth;
         // Changement de la couleur
-        /*if ((health / maxHealth) >= highColorMinValue)
+        if (slider.normalizedValue >= highColorMinValue)
         {
             slider.fillRect.GetComponentInChildren<Image>().color = high;
 
-        } else if((health / maxHealth) >= highColorMinValue)
+        } else if(slider.normalizedValue >= highColorMinValue)
         {
             slider.fillRect.GetComponentInChildren<Image>().color = medium;
 
         } else
         {
             slider.fillRect.GetComponentInChildren<Image>().color = low;
-        }*/
+        }
         
-        slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, slider.normalizedValue);
+        //slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, high, slider.normalizedValue);
 
     }
 }
