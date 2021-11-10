@@ -8,7 +8,7 @@ public abstract class WizardState : MonoBehaviour
 
     protected float speed = 3;
     protected float regenPerSeconds = 0;
-    protected bool enemyAround = false;
+    protected int enemyAroundCount = 0;
     protected float targetRadius = 1.5f;
     
     protected void Awake()
@@ -36,13 +36,24 @@ public abstract class WizardState : MonoBehaviour
         regenPerSeconds = regen;
     }
 
-    protected void OnTriggerEnter2D(Collider2D other)
+    public int EnemyAroundCount()
     {
-        enemyAround = true;
+        return enemyAroundCount;
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))
+        {
+            enemyAroundCount++;
+        }
     }
 
     protected void OnTriggerExit2D(Collider2D collision)
     {
-        enemyAround = false;
+        if (collision.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))
+        {
+            enemyAroundCount--;
+        }
     }
 }

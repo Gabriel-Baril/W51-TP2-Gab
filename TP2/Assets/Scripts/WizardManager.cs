@@ -90,6 +90,11 @@ public class WizardManager : MonoBehaviour
         }
     }
 
+    public float GetLifePercentage()
+    {
+        return (float)healthPoints / maxHealthPoints;
+    }
+
     public Team GetTeam()
     {
         return wizardTeam;

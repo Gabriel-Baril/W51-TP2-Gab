@@ -65,20 +65,20 @@ public class NormalState : WizardState
     {
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(other);
-        if(other.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()) || other.gameObject.CompareTag(wizardManager.GetOpponentTowerTag()))
+        base.OnTriggerEnter2D(collision);
+        if(collision.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()) || collision.gameObject.CompareTag(wizardManager.GetOpponentTowerTag()))
         {
-            lastTargetEnemy = other.gameObject;
+            lastTargetEnemy = collision.gameObject;
             LookAt(lastTargetEnemy);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        base.OnTriggerExit2D(other);
-        if (other.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))
+        base.OnTriggerExit2D(collision);
+        if (collision.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))
         {
             lastTargetEnemy = null;
         }
