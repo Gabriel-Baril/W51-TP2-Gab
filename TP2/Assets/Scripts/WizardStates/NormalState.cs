@@ -65,17 +65,6 @@ public class NormalState : WizardState
     {
     }
 
-    private void MoveTo(GameObject target)
-    {
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-        LookAt(target);
-    }
-
-    private void LookAt(GameObject target)
-    {
-        transform.up = target.transform.position - transform.position;
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);

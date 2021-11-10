@@ -120,6 +120,13 @@ public class WizardManager : MonoBehaviour
         return Tags.BLUE_TOWER;
     }
 
+    public string GetTeamTowerTag()
+    {
+        if (GetTeam() == Team.BLUE)
+            return Tags.BLUE_TOWER;
+        return Tags.GREEN_TOWER;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(GetOpponentProjectileTag()))

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject[] blueTowers;
     [SerializeField] GameObject[] greenTowers;
+    [SerializeField] GameObject[] forests;
     [SerializeField] Text[] uiTexts;
     [SerializeField] Button x1Button;
     [SerializeField] Button x2Button;
@@ -52,6 +53,22 @@ public class GameManager : MonoBehaviour
     void ChangeGameSpeed(int newGameSpeed)
     {
         Time.timeScale = newGameSpeed;
+    }
+
+    public GameObject FindClosestForest(Vector3 position)
+    {
+        GameObject closestForest = forests[0];
+        float minDistance = Vector3.Distance(position, closestForest.transform.position);
+
+        for (int i = 1; i < forests.Length; i++)
+        {
+            if (Vector3.Distance(position, forests[i].transform.position) < minDistance)
+            {
+                closestForest = forests[i];
+            }
+        }
+
+        return closestForest;
     }
 
     public GameObject FindClosestTower(Vector3 position, Team team)
