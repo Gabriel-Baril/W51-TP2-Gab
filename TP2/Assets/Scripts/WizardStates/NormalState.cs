@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class NormalState : WizardState
 {
-    private const float MIN_TARGET_RADIUS = 1.5f;
-    private const float MAX_TARGET_RADIUS = 3.0f;
-
-    private const float MIN_DAMAGE = 3.0f;
-    private const float MAX_DAMAGE = 10.0f;
+    [SerializeField] private GameObject lastTargetEnemy;
 
     private GameObject closestTower;
-    [SerializeField] private GameObject lastTargetEnemy;
 
     private float timeSinceLastShot = 0;
     private float shotCooldown = 0.5f; // 0.5 seconde entre chaque tir
+
+    private const float MIN_TARGET_RADIUS = 1.5f;
+    private const float MAX_TARGET_RADIUS = 3.0f;
+    private const float MIN_DAMAGE = 3.0f;
+    private const float MAX_DAMAGE = 10.0f;
+    private const int INTREPID_STATE_KILL_THRESHOLD = 3;
+    private const float ESCAPE_STATE_HEALTH_THRESHOLD = 0.25f; // 25% de vie
 
     private void Awake()
     {
@@ -63,6 +65,19 @@ public class NormalState : WizardState
 
     public override void ManageStateChange()
     {
+        
+        if (wizardManager.GetNumberbOfKills() >= INTREPID_STATE_KILL_THRESHOLD)
+        {
+            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INTREPID);
+        } 
+        else if (wizardManager.GetCurrentHealthPoints() / wizardManager.GetMaxHealthPoints() <= ESCAPE_STATE_HEALTH_THRESHOLD)
+        {
+            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.ESCAPE);
+        } 
+        else if(wizardManager.GetCurrentHealthPoints() <= 0)
+        {
+            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.DEAD);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
