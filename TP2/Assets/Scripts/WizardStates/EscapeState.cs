@@ -10,6 +10,7 @@ public class EscapeState : WizardState
     private new void Awake()
     {
         base.Awake();
+        speed = 6.0f;
     }
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,9 @@ public class EscapeState : WizardState
 
     public override void Shoot()
     {
+        // Ne tir pas quand il est en fuite
     }
+
     public override void Move()
     {
         if (escapeTarget != null)
@@ -47,6 +50,10 @@ public class EscapeState : WizardState
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.HIDDEN);
         }
+        else if (wizardManager.GetLifePercentage() <= 0.0f)
+        {
+            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.DEAD);
+        }
     }
 
     private void UpdateCurrentTarget()
@@ -61,7 +68,7 @@ public class EscapeState : WizardState
         }
     }
 
-    private void OnTriggerEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag(Tags.FOREST))
         {
@@ -73,7 +80,7 @@ public class EscapeState : WizardState
         }
     }
 
-    private void OnTriggerExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(Tags.FOREST))
         {
