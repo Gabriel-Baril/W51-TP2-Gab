@@ -33,7 +33,7 @@ public class HealthBarBehavior : MonoBehaviour
         {
             slider.fillRect.GetComponentInChildren<Image>().color = high;
 
-        } else if(slider.normalizedValue >= highColorMinValue)
+        } else if(slider.normalizedValue >= mediumColorMinValue)
         {
             slider.fillRect.GetComponentInChildren<Image>().color = medium;
 
