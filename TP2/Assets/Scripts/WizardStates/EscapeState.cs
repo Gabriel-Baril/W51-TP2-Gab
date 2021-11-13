@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class EscapeState : WizardState
 {
+    private const float MOVEMENT_SPEED = 6.0f;
+
+    private const float REGENERATION_PER_SECONDS = 1.0f;
+
     private bool inTower = false;
     private bool inForest = false;
     private GameObject escapeTarget;
     private new void Awake()
     {
         base.Awake();
-        speed = 6.0f;
+        SetSpeed(MOVEMENT_SPEED);
+        SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
     }
     // Start is called before the first frame update
     void Start()
@@ -26,10 +31,8 @@ public class EscapeState : WizardState
         ManageStateChange();
     }
 
-    public override void Shoot()
-    {
-        // Ne tir pas quand il est en fuite
-    }
+    // Ne tir pas quand il est en fuite 
+    public override void Shoot() {}
 
     public override void Move()
     {

@@ -4,25 +4,19 @@ using UnityEngine;
 
 public class SafeState : WizardState
 {
-    private void Awake()
+    private const float REGENERATION_PER_SECONDS = 2.0f;
+    private new void Awake()
     {
         base.Awake();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Not shooting 
     public override void Shoot()
     {
     }
+
+    // 
     public override void Move()
     {
     }

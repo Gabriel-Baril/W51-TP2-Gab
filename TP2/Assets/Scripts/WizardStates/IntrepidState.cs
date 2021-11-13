@@ -10,18 +10,21 @@ public class IntrepidState : WizardState
     private float timeSinceLastShot = 0;
 
     private const float ATTACK_SPEED = 0.5f; // 2 tirs / seconde
-    private const float MIN_TARGET_RADIUS = 1.5f;
-    private const float MAX_TARGET_RADIUS = 3.0f;
+    private const float MOVEMENT_SPEED = 5;
+    private const float REGENERATION_PER_SECONDS = 2.0f;
     private const float MIN_DAMAGE = 7.0f;
     private const float MAX_DAMAGE = 20.0f;
-    private const float MOVEMENT_SPEED = 5;
+
+    private const float MIN_TARGET_RADIUS = 1.5f;
+    private const float MAX_TARGET_RADIUS = 3.0f;
 
     private void Awake()
     {
         base.Awake();
+        SetSpeed(MOVEMENT_SPEED);
+        SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
         targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
         GetComponent<CircleCollider2D>().radius = targetRadius;
-        speed = MOVEMENT_SPEED;
         Debug.Log("Je viens de passe à intrépide !");
     }
 

@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class HiddenState : WizardState
 {
+    private const float REGENERATION_PER_SECONDS = 3.0f;
+
     private const float NORMAL_STATE_LIFE_THRESHOLD = 0.5f;
     private const float ESCAPE_STATE_LIFE_THRESHOLD = 0.25f;
-
+    
     bool gotAttacked = false;
 
     private void Awake()
     {
         base.Awake();
+        SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
     }
     // Start is called before the first frame update
     void Start()

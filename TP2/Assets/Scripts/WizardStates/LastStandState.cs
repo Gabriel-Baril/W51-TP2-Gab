@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class LastStandState : WizardState
 {
+    private const float REGENERATION_PER_SECONDS = 2.0f;
+
     private void Awake()
     {
         base.Awake();
+        SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
     }
+
     // Start is called before the first frame update
     void Start()
     {

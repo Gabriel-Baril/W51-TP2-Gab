@@ -10,16 +10,21 @@ public class NormalState : WizardState
     private float timeSinceLastShot = 0;
 
     private const float ATTACK_SPEED = 0.5f; // 2 tirs / seconde
+    private const float MOVEMENT_SPEED = 3.0f;
+    private const float REGENERATION_PER_SECONDS = 1.0f;
     private const float MIN_TARGET_RADIUS = 1.5f;
     private const float MAX_TARGET_RADIUS = 3.0f;
     private const float MIN_DAMAGE = 3.0f;
     private const float MAX_DAMAGE = 10.0f;
+
     private const int INTREPID_STATE_KILL_THRESHOLD = 3;
     private const float ESCAPE_STATE_HEALTH_THRESHOLD = 0.25f; // 25% de vie
 
     private void Awake()
     {
         base.Awake();
+        SetSpeed(MOVEMENT_SPEED);
+        SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
         targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
         GetComponent<CircleCollider2D>().radius = targetRadius;
     }
@@ -64,7 +69,6 @@ public class NormalState : WizardState
 
     public override void ManageStateChange()
     {
-        
         if (wizardManager.GetNumberbOfKills() >= INTREPID_STATE_KILL_THRESHOLD)
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INTREPID);

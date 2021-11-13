@@ -6,7 +6,7 @@ public abstract class WizardState : MonoBehaviour
 {
     protected WizardManager wizardManager;
 
-    protected float speed = 3;
+    protected float speed = 0;
     protected float regenPerSeconds = 0;
     protected int enemyAroundCount = 0;
     protected float targetRadius = 1.5f;
@@ -31,7 +31,7 @@ public abstract class WizardState : MonoBehaviour
         transform.up = target.transform.position - transform.position;
     }
 
-    public void Regen(float regen)
+    public void SetRegenerationPerSeconds(float regen)
     {
         regenPerSeconds = regen;
     }
@@ -39,6 +39,11 @@ public abstract class WizardState : MonoBehaviour
     public int EnemyAroundCount()
     {
         return enemyAroundCount;
+    }
+
+    protected void SetSpeed(float speed)
+    {
+        this.speed = speed;
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
