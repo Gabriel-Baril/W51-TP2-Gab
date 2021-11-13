@@ -31,11 +31,6 @@ public class ProjectileRecycler : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        
-    }
-
     public void SpawnProjectile(WizardManager source, int damage, Vector2 direction)
     {
         GameObject projectile = null;
@@ -44,7 +39,7 @@ public class ProjectileRecycler : MonoBehaviour
         {
             projectile = FindFirstDeactivated(blueProjectilesPool);
         }
-        else if(source.GetTeam() == Team.GREEN)
+        else
         {
             projectile = FindFirstDeactivated(greenProjectilesPool);
         }

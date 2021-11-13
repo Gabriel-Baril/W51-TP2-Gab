@@ -19,13 +19,13 @@ public class GameManager : MonoBehaviour
     private int greenWizardsAlive = 0;
     private string blankText = "";
     private string blueTeamWinsMessage = "L'équipe bleue a gagné !";
-    private Color blue = Color.blue;
     private string greenTeamWinsMessage = "L'équipe verte a gagné !";
-    private Color green = Color.green;
 
     private int minSpeed = 1;
     private int mediumSpeed = 2;
     private int maxSpeed = 4;
+
+    private bool gameOver = false;
 
     private void Awake()
     {
@@ -118,6 +118,7 @@ public class GameManager : MonoBehaviour
                 filteredTowers.Add(towers[i]);
             }
         }
+
         return filteredTowers;
     }
 
@@ -156,8 +157,38 @@ public class GameManager : MonoBehaviour
             greenWizardsAlive--;
             uiTexts[1].text = greenWizardsAlive.ToString();
         }
+    }
 
-        // A FAIRE
-        // CHECKER POUR LA FIN DE LA PARTIE
+    // Lorsqu'une tour est détruite, vérifie si c'était la dernière de son équipe afin d'arrêter la partie.
+    public void CheckGameState(Team team)
+    {
+        List<GameObject> filteredTowers = new List<GameObject>();
+
+        if (team == Team.BLUE) filteredTowers = GetFilteredTowersFromArray(blueTowers);
+        if (team == Team.GREEN) filteredTowers = GetFilteredTowersFromArray(greenTowers);
+
+        // Il n'y a plus de tour
+        if(filteredTowers.Count == 0)
+        {
+            if(team == Team.BLUE)
+            {
+                uiTexts[2].text = greenTeamWinsMessage;
+                uiTexts[2].color = Color.green;
+                
+            } else
+            {
+                uiTexts[2].text = blueTeamWinsMessage;
+                uiTexts[2].color = Color.blue;
+            }
+
+            // Rendre tous les magiciens inactifs
+            GameObject.FindObjectOfType<WizardSpawner>().StopAllWizards();
+            gameOver = true;
+        }
+    }
+
+    public bool GameOver()
+    {
+        return gameOver;
     }
 }

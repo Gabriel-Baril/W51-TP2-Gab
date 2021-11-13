@@ -42,7 +42,7 @@ public class WizardSpawner : MonoBehaviour
 
     private void ManageSpawn()
     {
-        if (timeSinceLastSpawn >= timeBetweenSpawns)
+        if (!GameManager.Instance.GameOver() && timeSinceLastSpawn >= timeBetweenSpawns)
         {
             timeSinceLastSpawn = 0;
             ManageWizardSpawn(Team.GREEN, greenWizards);
@@ -63,6 +63,9 @@ public class WizardSpawner : MonoBehaviour
                 wizardPool[i].SetActive(true);
                 wizardPool[i].transform.right = Vector3.right;
 
+                // Le magicien commence à l'état normal.
+                wizardPool[i].GetComponent<WizardManager>().ChangeWizardState(WizardManager.WizardStateToSwitch.NORMAL);
+
                 // La position du magicien est déterminée aléatoirement parmi les tours actives.
                 wizardPool[i].transform.position = filteredTowers[Random.Range(0, filteredTowers.Count)].transform.position;
 
@@ -73,6 +76,22 @@ public class WizardSpawner : MonoBehaviour
 
                 GameManager.Instance.AddWizardCount(team);
                 break;
+            }
+        }
+    }
+
+    public void StopAllWizards()
+    {
+        for(int i = 0; i < maxNumberOfWizardsPerTeam; i++)
+        {
+            if (blueWizards[i].activeSelf)
+            {
+                blueWizards[i].GetComponent<WizardManager>().ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+            }
+
+            if (greenWizards[i].activeSelf)
+            {
+                greenWizards[i].GetComponent<WizardManager>().ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
             }
         }
     }

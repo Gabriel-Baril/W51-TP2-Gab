@@ -16,7 +16,7 @@ public class WizardManager : MonoBehaviour
     private const int MIN_HEALTH_POINTS = 50;
     private const int MAX_HEALTH_POINTS = 100;
 
-    public enum WizardStateToSwitch { DEAD, ESCAPE, HIDDEN, INTREPID, NORMAL, SAFE }
+    public enum WizardStateToSwitch { ESCAPE, HIDDEN, INTREPID, NORMAL, SAFE, INACTIVE }
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class WizardManager : MonoBehaviour
     }
 
     /// <summary>
-    ///  D�termine al�atoirement (entre 2 valeurs fixes) la vie d'un magicien lorsqu'il est activ�.
+    ///  Determine aleatoirement (entre 2 valeurs fixes) la vie d'un magicien lorsqu'il est active.
     /// </summary>
     private void OnEnable()
     {
@@ -44,10 +44,23 @@ public class WizardManager : MonoBehaviour
         if (healthPoints <= 0)
         {
             // Magicien est mort.
+            ChangeWizardState(WizardStateToSwitch.INACTIVE);
             gameObject.SetActive(false);
             GameManager.Instance.RemoveWizardCount(wizardTeam);
             attacker.AddKill();
         }
+    }
+
+    public void RegenHP(int healAmount)
+    {
+        healthPoints += healAmount;
+
+        if(healthPoints > maxHealthPoints)
+        {
+            healthPoints = maxHealthPoints;
+        }
+
+        healthBar.SetHealth(healthPoints, maxHealthPoints);
     }
 
     private void AddKill()
@@ -61,11 +74,6 @@ public class WizardManager : MonoBehaviour
 
         switch (nextState)
         {
-            case WizardStateToSwitch.DEAD:
-                {
-                    wizardState = gameObject.AddComponent<DeadState>() as DeadState;
-                    break;
-                }
             case WizardStateToSwitch.ESCAPE:
                 {
                     wizardState = gameObject.AddComponent<EscapeState>() as EscapeState;
@@ -89,6 +97,11 @@ public class WizardManager : MonoBehaviour
             case WizardStateToSwitch.SAFE:
                 {
                     wizardState = gameObject.AddComponent<SafeState>() as SafeState;
+                    break;
+                }
+            case WizardStateToSwitch.INACTIVE:
+                {
+                    wizardState = gameObject.AddComponent<InactiveState>() as InactiveState;
                     break;
                 }
         }
@@ -151,12 +164,12 @@ public class WizardManager : MonoBehaviour
         return nbOfKills;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(GetOpponentProjectileTag()))
         {
             collision.gameObject.SetActive(false);
-            TakeDamage(collision.gameObject.GetComponent<ProjectileDamage>().GetDamage(), collision.gameObject.GetComponent<WizardManager>());
+            TakeDamage(collision.gameObject.GetComponent<ProjectileDamage>().GetDamage(), collision.gameObject.GetComponent<ProjectileDamage>().GetSource());
         }
     }
 }

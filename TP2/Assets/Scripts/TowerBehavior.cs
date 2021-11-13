@@ -17,9 +17,10 @@ public class TowerBehavior : MonoBehaviour
 
     private void Update()
     {
-        if(towerHealth <= 0)
+        if(!IsAlive())
         {
             gameObject.SetActive(false);
+            GameManager.Instance.CheckGameState(towerTeam);
         }
     }
 
@@ -38,7 +39,7 @@ public class TowerBehavior : MonoBehaviour
         return Tags.BLUE_PROJECTILE;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(GetOpponentProjectileTag()))
         {
