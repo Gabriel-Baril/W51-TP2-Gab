@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class TowerBehavior : MonoBehaviour
 {
-    private const int DEFAULT_TOWER_HEALTH = 100;
+    private const int DEFAULT_TOWER_HEALTH = 200;
 
     [SerializeField] int towerHealth = DEFAULT_TOWER_HEALTH;
     [SerializeField] private Team towerTeam;
+    [SerializeField] private HealthBarBehavior healthBar;
+
+    private void Start()
+    {
+        healthBar.SetHealth(towerHealth, DEFAULT_TOWER_HEALTH);
+    }
 
     private void Update()
     {
@@ -38,6 +44,7 @@ public class TowerBehavior : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             towerHealth -= collision.gameObject.GetComponent<ProjectileDamage>().GetDamage();
+            healthBar.SetHealth(towerHealth, DEFAULT_TOWER_HEALTH);
         }
     }
 }

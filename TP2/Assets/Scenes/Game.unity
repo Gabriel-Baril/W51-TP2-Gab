@@ -240,6 +240,7 @@ MonoBehaviour:
   - {fileID: 1738406146}
   - {fileID: 620054328}
   - {fileID: 4358886}
+  forests: []
   uiTexts:
   - {fileID: 825789513}
   - {fileID: 1147645023}
@@ -336,7 +337,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_SortingLayerID
@@ -399,6 +400,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 828592818}
     m_Modifications:
+    - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: towerHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2958258961904778887, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_Color.g
       value: 0.54509807
@@ -457,6 +462,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -522,6 +535,10 @@ PrefabInstance:
       propertyPath: towerTeam
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: towerHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2958258961904778887, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -584,6 +601,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -808,7 +833,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_SortingLayerID
@@ -1237,6 +1262,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 828592818}
     m_Modifications:
     - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: towerHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: towerColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -1308,6 +1337,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
 --- !u!4 &961974026 stripped
@@ -1322,6 +1359,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 828592818}
     m_Modifications:
+    - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: towerHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2958258961904778887, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -1384,6 +1425,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1689,6 +1738,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: towerHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: towerColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -1762,6 +1815,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6728375564921174509, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1864,6 +1925,10 @@ PrefabInstance:
       propertyPath: towerTeam
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5486115544775420251, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: towerHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 2958258961904778887, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -1928,6 +1993,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316744753889579336, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98030a9006fff774f829539fc6f2e251, type: 3}
 --- !u!4 &1445941148 stripped
@@ -1959,7 +2032,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_SortingLayerID
@@ -2592,7 +2665,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1360251665144454079, guid: 08a60d2a9c96f4145a241ad0627a1b6e, type: 3}
       propertyPath: m_SortingLayerID

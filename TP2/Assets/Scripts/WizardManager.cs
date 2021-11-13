@@ -33,13 +33,13 @@ public class WizardManager : MonoBehaviour
         maxHealthPoints = Random.Range(MIN_HEALTH_POINTS, MAX_HEALTH_POINTS + 1);
         healthPoints = maxHealthPoints;
 
-        healthBar.SetHeatlh(healthPoints, maxHealthPoints);
+        healthBar.SetHealth(healthPoints, maxHealthPoints);
     }
 
     private void TakeDamage(int damage, WizardManager attacker)
     {
         healthPoints -= damage;
-        healthBar.SetHeatlh(healthPoints, maxHealthPoints);
+        healthBar.SetHealth(healthPoints, maxHealthPoints);
 
         if (healthPoints <= 0)
         {
