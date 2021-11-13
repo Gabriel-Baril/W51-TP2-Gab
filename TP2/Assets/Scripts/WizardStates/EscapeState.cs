@@ -6,7 +6,7 @@ public class EscapeState : WizardState
 {
     private const float MOVEMENT_SPEED = 6.0f;
 
-    private const float REGENERATION_PER_SECONDS = 1.0f;
+    private const int REGENERATION_PER_SECONDS = 1;
 
     private bool inTower = false;
     private bool inForest = false;
@@ -17,13 +17,7 @@ public class EscapeState : WizardState
         SetSpeed(MOVEMENT_SPEED);
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateCurrentTarget();
@@ -55,7 +49,7 @@ public class EscapeState : WizardState
         }
         else if (wizardManager.GetLifePercentage() <= 0.0f)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.DEAD);
+            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
         }
     }
 
@@ -71,7 +65,7 @@ public class EscapeState : WizardState
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private new void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag(Tags.FOREST))
         {
@@ -83,7 +77,7 @@ public class EscapeState : WizardState
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private new void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(Tags.FOREST))
         {

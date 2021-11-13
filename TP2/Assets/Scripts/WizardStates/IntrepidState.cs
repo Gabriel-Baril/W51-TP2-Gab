@@ -10,22 +10,21 @@ public class IntrepidState : WizardState
     private float timeSinceLastShot = 0;
 
     private const float ATTACK_SPEED = 0.5f; // 2 tirs / seconde
-    private const float MOVEMENT_SPEED = 5;
-    private const float REGENERATION_PER_SECONDS = 2.0f;
+    private const float MOVEMENT_SPEED = 4.0f;
+    private const int REGENERATION_PER_SECONDS = 2;
     private const float MIN_DAMAGE = 7.0f;
     private const float MAX_DAMAGE = 20.0f;
 
     private const float MIN_TARGET_RADIUS = 1.5f;
     private const float MAX_TARGET_RADIUS = 3.0f;
 
-    private void Awake()
+    private new void Awake()
     {
         base.Awake();
         SetSpeed(MOVEMENT_SPEED);
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
         targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
         GetComponent<CircleCollider2D>().radius = targetRadius;
-        Debug.Log("Je viens de passe à intrépide !");
     }
 
     void Update()
@@ -66,11 +65,18 @@ public class IntrepidState : WizardState
         }
     }
 
+    /// <summary>
+    /// Seul changement possible -> Inactif
+    /// </summary>
     public override void ManageStateChange()
     {
+        if (wizardManager.GetLifePercentage() <= 0.0f)
+        {
+            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private new void OnTriggerEnter2D(Collider2D other)
     {
         base.OnTriggerEnter2D(other);
         if(other.gameObject.CompareTag(wizardManager.GetOpponentTowerTag()))
@@ -80,7 +86,7 @@ public class IntrepidState : WizardState
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private new void OnTriggerExit2D(Collider2D other)
     {
         base.OnTriggerExit2D(other);
         if (other.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))

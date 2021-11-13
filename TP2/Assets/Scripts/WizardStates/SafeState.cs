@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SafeState : WizardState
 {
-    private const float REGENERATION_PER_SECONDS = 2.0f;
+    private const int REGENERATION_PER_SECONDS = 2;
+
     private new void Awake()
     {
         base.Awake();
@@ -12,14 +13,10 @@ public class SafeState : WizardState
     }
 
     // Not shooting 
-    public override void Shoot()
-    {
-    }
+    public override void Shoot(){}
 
     // 
-    public override void Move()
-    {
-    }
+    public override void Move(){}
 
     public override void ManageStateChange()
     {

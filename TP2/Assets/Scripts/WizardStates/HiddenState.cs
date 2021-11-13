@@ -4,28 +4,16 @@ using UnityEngine;
 
 public class HiddenState : WizardState
 {
-    private const float REGENERATION_PER_SECONDS = 3.0f;
-
+    private const int REGENERATION_PER_SECONDS = 3;
     private const float NORMAL_STATE_LIFE_THRESHOLD = 0.5f;
     private const float ESCAPE_STATE_LIFE_THRESHOLD = 0.25f;
     
     bool gotAttacked = false;
 
-    private void Awake()
+    private new void Awake()
     {
         base.Awake();
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public override void Shoot()
@@ -36,6 +24,9 @@ public class HiddenState : WizardState
     {
     }
 
+    /// <summary>
+    /// Changement possibles : Normal, Fuite
+    /// </summary>
     public override void ManageStateChange()
     {
         float wizardLifePercentage = wizardManager.GetLifePercentage();
@@ -47,14 +38,11 @@ public class HiddenState : WizardState
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.ESCAPE);
         }
-        else if (wizardManager.GetLifePercentage() <= 0.0f)
-        {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.DEAD);
-        }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private new void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
         if (collision.gameObject.CompareTag(wizardManager.GetOpponentProjectileTag()))
         {
         }

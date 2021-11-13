@@ -7,20 +7,33 @@ public abstract class WizardState : MonoBehaviour
     protected WizardManager wizardManager;
 
     protected float speed = 0;
-    protected float regenPerSeconds = 0;
+    protected int regenPerSeconds = 0;
     protected int enemyAroundCount = 0;
     protected float targetRadius = 1.5f;
+
+    private float regenTickRate = 1f;
+    private float timer = 0;
     
     protected void Awake()
     {
         wizardManager = GetComponent<WizardManager>();
     }
 
-    void Update() {}
+    void Update() 
+    {
+        if(timer >= regenTickRate)
+        {
+            timer = 0;
+            wizardManager.RegenHP(regenPerSeconds);
+        }
+
+        timer += Time.deltaTime;
+    }
 
     public abstract void Shoot();
     public abstract void Move();
     public abstract void ManageStateChange();
+
     public void MoveTo(GameObject target)
     {
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
@@ -31,7 +44,7 @@ public abstract class WizardState : MonoBehaviour
         transform.up = target.transform.position - transform.position;
     }
 
-    public void SetRegenerationPerSeconds(float regen)
+    public void SetRegenerationPerSeconds(int regen)
     {
         regenPerSeconds = regen;
     }

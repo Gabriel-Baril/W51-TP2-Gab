@@ -11,7 +11,7 @@ public class NormalState : WizardState
 
     private const float ATTACK_SPEED = 0.5f; // 2 tirs / seconde
     private const float MOVEMENT_SPEED = 3.0f;
-    private const float REGENERATION_PER_SECONDS = 1.0f;
+    private const int REGENERATION_PER_SECONDS = 1;
     private const float MIN_TARGET_RADIUS = 1.5f;
     private const float MAX_TARGET_RADIUS = 3.0f;
     private const float MIN_DAMAGE = 3.0f;
@@ -20,7 +20,7 @@ public class NormalState : WizardState
     private const int INTREPID_STATE_KILL_THRESHOLD = 3;
     private const float ESCAPE_STATE_HEALTH_THRESHOLD = 0.25f; // 25% de vie
 
-    private void Awake()
+    private new void Awake()
     {
         base.Awake();
         SetSpeed(MOVEMENT_SPEED);
@@ -67,23 +67,28 @@ public class NormalState : WizardState
         }
     }
 
+    /// <summary>
+    /// Changements possbiles : Intrepide, Fuite, Mort
+    /// </summary>
     public override void ManageStateChange()
     {
         if (wizardManager.GetNumberbOfKills() >= INTREPID_STATE_KILL_THRESHOLD)
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INTREPID);
+        
         } 
-        else if (wizardManager.GetCurrentHealthPoints() / wizardManager.GetMaxHealthPoints() <= ESCAPE_STATE_HEALTH_THRESHOLD)
+        else if (((float)wizardManager.GetCurrentHealthPoints() / (float)wizardManager.GetMaxHealthPoints()) <= ESCAPE_STATE_HEALTH_THRESHOLD)
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.ESCAPE);
+        
         } 
-        else if(wizardManager.GetCurrentHealthPoints() <= 0)
+        else if(wizardManager.GetLifePercentage() <= 0.0f)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.DEAD);
+            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private new void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
         if(collision.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()) || collision.gameObject.CompareTag(wizardManager.GetOpponentTowerTag()))
@@ -93,7 +98,7 @@ public class NormalState : WizardState
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private new void OnTriggerExit2D(Collider2D collision)
     {
         base.OnTriggerExit2D(collision);
         if (collision.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))

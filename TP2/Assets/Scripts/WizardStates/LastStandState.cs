@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LastStandState : WizardState
 {
-    private const float REGENERATION_PER_SECONDS = 2.0f;
+    private const int REGENERATION_PER_SECONDS = 2;
 
-    private void Awake()
+    private new void Awake()
     {
         base.Awake();
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
@@ -40,7 +40,7 @@ public class LastStandState : WizardState
         }
         else if (wizardManager.GetLifePercentage() <= 0.0f)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.DEAD);
+            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
         }
     }
 }
