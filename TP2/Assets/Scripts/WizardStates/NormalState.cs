@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalState : WizardState
+public class NormalState : IWizardState
 {
     private GameObject lastTargetEnemy;
     private GameObject closestTower;
@@ -74,15 +74,15 @@ public class NormalState : WizardState
     {
         if (wizardManager.GetNumberbOfKills() >= INTREPID_STATE_KILL_THRESHOLD)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INTREPID);
+            wizardManager.ChangeWizardState(WizardState.INTREPID);
         } 
         else if (wizardManager.GetLifePercentage() <= ESCAPE_STATE_HEALTH_THRESHOLD)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.ESCAPE);
+            wizardManager.ChangeWizardState(WizardState.ESCAPE);
         } 
         else if(!wizardManager.IsAlive())
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+            wizardManager.ChangeWizardState(WizardState.INACTIVE);
         }
     }
 

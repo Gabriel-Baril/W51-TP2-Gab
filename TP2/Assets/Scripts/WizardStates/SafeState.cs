@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SafeState : WizardState
+public class SafeState : IWizardState
 {
     private const float NORMAL_STATE_LIFE_THRESHOLD = 1.0f;
 
@@ -29,15 +29,15 @@ public class SafeState : WizardState
     {
         if (wizardManager.GetLifePercentage() >= NORMAL_STATE_LIFE_THRESHOLD)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.NORMAL);
+            wizardManager.ChangeWizardState(WizardState.NORMAL);
         }
         else if (gotAttacked)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.LAST_STAND);
+            wizardManager.ChangeWizardState(WizardState.LAST_STAND);
         }
         else if (!wizardManager.IsAlive())
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+            wizardManager.ChangeWizardState(WizardState.INACTIVE);
         }
     }
 

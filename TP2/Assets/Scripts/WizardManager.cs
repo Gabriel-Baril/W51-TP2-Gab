@@ -8,7 +8,7 @@ public class WizardManager : MonoBehaviour
     [SerializeField] private Team wizardOpponentTeam;
     [SerializeField] private HealthBarBehavior healthBar;
 
-    private WizardState wizardState;
+    private IWizardState wizardState;
     private int healthPoints;
     private int maxHealthPoints;
     private int nbOfKills = 0;
@@ -16,12 +16,10 @@ public class WizardManager : MonoBehaviour
     private const int MIN_HEALTH_POINTS = 50;
     private const int MAX_HEALTH_POINTS = 100;
 
-    public enum WizardStateToSwitch { ESCAPE, HIDDEN, INTREPID, NORMAL, SAFE, LAST_STAND, INACTIVE }
-
     private void Awake()
     {
-        // ChangeWizardState(WizardStateToSwitch.NORMAL);
-        wizardState = GetComponent<WizardState>();
+        // ChangeWizardState(WizardState.NORMAL);
+        wizardState = GetComponent<IWizardState>();
     }
 
     /// <summary>
@@ -44,7 +42,7 @@ public class WizardManager : MonoBehaviour
         if (healthPoints <= 0)
         {
             // Magicien est mort.
-            ChangeWizardState(WizardStateToSwitch.INACTIVE);
+            ChangeWizardState(WizardState.INACTIVE);
             gameObject.SetActive(false);
             GameManager.Instance.RemoveWizardCount(wizardTeam);
             attacker.AddKill();
@@ -68,43 +66,43 @@ public class WizardManager : MonoBehaviour
         nbOfKills++;
     }
 
-    public void ChangeWizardState(WizardStateToSwitch nextState)
+    public void ChangeWizardState(WizardState nextState)
     {
         Destroy(wizardState);
 
         switch (nextState)
         {
-            case WizardStateToSwitch.ESCAPE:
+            case WizardState.ESCAPE:
                 {
                     wizardState = gameObject.AddComponent<EscapeState>() as EscapeState;
                     break;
                 }
-            case WizardStateToSwitch.HIDDEN:
+            case WizardState.HIDDEN:
                 {
                     wizardState = gameObject.AddComponent<HiddenState>() as HiddenState;
                     break;
                 }
-            case WizardStateToSwitch.INTREPID:
+            case WizardState.INTREPID:
                 {
                     wizardState = gameObject.AddComponent<IntrepidState>() as IntrepidState;
                     break;
                 }
-            case WizardStateToSwitch.NORMAL:
+            case WizardState.NORMAL:
                 {
                     wizardState = gameObject.AddComponent<NormalState>() as NormalState;
                     break;
                 }
-            case WizardStateToSwitch.SAFE:
+            case WizardState.SAFE:
                 {
                     wizardState = gameObject.AddComponent<SafeState>() as SafeState;
                     break;
                 }
-            case WizardStateToSwitch.LAST_STAND:
+            case WizardState.LAST_STAND:
                 {
                     wizardState = gameObject.AddComponent<LastStandState>() as LastStandState;
                     break;
                 }
-            case WizardStateToSwitch.INACTIVE:
+            case WizardState.INACTIVE:
                 {
                     wizardState = gameObject.AddComponent<InactiveState>() as InactiveState;
                     break;

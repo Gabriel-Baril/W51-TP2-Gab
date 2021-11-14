@@ -64,7 +64,7 @@ public class WizardSpawner : MonoBehaviour
                 wizardPool[i].transform.right = Vector3.right;
 
                 // Le magicien commence à l'état normal.
-                wizardPool[i].GetComponent<WizardManager>().ChangeWizardState(WizardManager.WizardStateToSwitch.NORMAL);
+                wizardPool[i].GetComponent<WizardManager>().ChangeWizardState(WizardState.NORMAL);
 
                 // La position du magicien est déterminée aléatoirement parmi les tours actives.
                 wizardPool[i].transform.position = filteredTowers[Random.Range(0, filteredTowers.Count)].transform.position;
@@ -86,12 +86,12 @@ public class WizardSpawner : MonoBehaviour
         {
             if (blueWizards[i].activeSelf)
             {
-                blueWizards[i].GetComponent<WizardManager>().ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+                blueWizards[i].GetComponent<WizardManager>().ChangeWizardState(WizardState.INACTIVE);
             }
 
             if (greenWizards[i].activeSelf)
             {
-                greenWizards[i].GetComponent<WizardManager>().ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+                greenWizards[i].GetComponent<WizardManager>().ChangeWizardState(WizardState.INACTIVE);
             }
         }
     }

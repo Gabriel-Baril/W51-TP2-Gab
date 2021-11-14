@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LastStandState : WizardState
+public class LastStandState : IWizardState
 {
     private const int REGENERATION_PER_SECONDS = 2;
 
@@ -36,11 +36,11 @@ public class LastStandState : WizardState
     {
         if(EnemyAroundCount() <= 0)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.NORMAL);
+            wizardManager.ChangeWizardState(WizardState.NORMAL);
         }
         else if (!wizardManager.IsAlive())
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+            wizardManager.ChangeWizardState(WizardState.INACTIVE);
         }
     }
 }

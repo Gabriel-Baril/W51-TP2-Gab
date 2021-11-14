@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EscapeState : WizardState
+public class EscapeState : IWizardState
 {
     private const float MOVEMENT_SPEED = 6.0f;
 
@@ -41,15 +41,15 @@ public class EscapeState : WizardState
         // Se cache dans la forêt ou la tour la plus proche
         if (inTower)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.SAFE);
+            wizardManager.ChangeWizardState(WizardState.SAFE);
         }
         else if(inForest)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.HIDDEN);
+            wizardManager.ChangeWizardState(WizardState.HIDDEN);
         }
         else if (!wizardManager.IsAlive())
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+            wizardManager.ChangeWizardState(WizardState.INACTIVE);
         }
     }
 

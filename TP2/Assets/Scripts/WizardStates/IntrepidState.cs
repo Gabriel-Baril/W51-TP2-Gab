@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntrepidState : WizardState
+public class IntrepidState : IWizardState
 {
     private GameObject target;
     private GameObject closestTower;
@@ -72,7 +72,7 @@ public class IntrepidState : WizardState
     {
         if (!wizardManager.IsAlive())
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+            wizardManager.ChangeWizardState(WizardState.INACTIVE);
         }
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InactiveState : WizardState
+public class InactiveState : IWizardState
 {
     /// <summary>
     /// N'est pas réellement un "état", représente seulement le comportement

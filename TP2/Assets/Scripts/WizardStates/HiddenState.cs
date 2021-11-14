@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HiddenState : WizardState
+public class HiddenState : IWizardState
 {
     private const int REGENERATION_PER_SECONDS = 3;
     private const float NORMAL_STATE_LIFE_THRESHOLD = 0.5f;
@@ -32,15 +32,15 @@ public class HiddenState : WizardState
         float wizardLifePercentage = wizardManager.GetLifePercentage();
         if (EnemyAroundCount() > 0 || wizardLifePercentage >= NORMAL_STATE_LIFE_THRESHOLD)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.NORMAL);
+            wizardManager.ChangeWizardState(WizardState.NORMAL);
         }
         else if(gotAttacked && wizardLifePercentage <= ESCAPE_STATE_LIFE_THRESHOLD)
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.ESCAPE);
+            wizardManager.ChangeWizardState(WizardState.ESCAPE);
         }
         else if (!wizardManager.IsAlive())
         {
-            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+            wizardManager.ChangeWizardState(WizardState.INACTIVE);
         }
     }
 
