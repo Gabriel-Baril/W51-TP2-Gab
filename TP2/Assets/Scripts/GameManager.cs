@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
             if (Vector3.Distance(position, forests[i].transform.position) < minDistance)
             {
                 closestForest = forests[i];
+                minDistance = Vector3.Distance(position, closestForest.transform.position);
             }
         }
 
