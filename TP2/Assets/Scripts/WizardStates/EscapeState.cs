@@ -84,12 +84,10 @@ public class EscapeState : IWizardState
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log(collision.tag.ToString());
         if(wizardManager.InsideForest(collision))
         {
             inForest = true;
         }
-        //else if (wizardManager.InsideTower(collision))
         else if (wizardManager.InsideTeamTower(collision))
         {
             inTower = true;

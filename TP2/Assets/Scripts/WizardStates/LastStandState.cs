@@ -19,7 +19,6 @@ public class LastStandState : IWizardState
 
     private new void Awake()
     {
-        Debug.Log("LAST STAND");
         base.Awake();
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
         targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
@@ -45,7 +44,7 @@ public class LastStandState : IWizardState
             }
         }
 
-        // Si la cible est détruite, on passe à la prochaine
+        // Si la cible est dï¿½truite, on passe ï¿½ la prochaine
         if (target != null && !target.activeSelf)
         {
             target = null;
