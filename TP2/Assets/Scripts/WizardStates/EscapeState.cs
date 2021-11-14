@@ -47,7 +47,7 @@ public class EscapeState : WizardState
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.HIDDEN);
         }
-        else if (wizardManager.GetLifePercentage() <= 0.0f)
+        else if (!wizardManager.IsAlive())
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
         }

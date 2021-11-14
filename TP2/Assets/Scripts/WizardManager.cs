@@ -16,7 +16,7 @@ public class WizardManager : MonoBehaviour
     private const int MIN_HEALTH_POINTS = 50;
     private const int MAX_HEALTH_POINTS = 100;
 
-    public enum WizardStateToSwitch { ESCAPE, HIDDEN, INTREPID, NORMAL, SAFE, INACTIVE }
+    public enum WizardStateToSwitch { ESCAPE, HIDDEN, INTREPID, NORMAL, SAFE, LAST_STAND, INACTIVE }
 
     private void Awake()
     {
@@ -99,6 +99,11 @@ public class WizardManager : MonoBehaviour
                     wizardState = gameObject.AddComponent<SafeState>() as SafeState;
                     break;
                 }
+            case WizardStateToSwitch.LAST_STAND:
+                {
+                    wizardState = gameObject.AddComponent<LastStandState>() as LastStandState;
+                    break;
+                }
             case WizardStateToSwitch.INACTIVE:
                 {
                     wizardState = gameObject.AddComponent<InactiveState>() as InactiveState;
@@ -107,9 +112,23 @@ public class WizardManager : MonoBehaviour
         }
     }
 
+    public bool IsAlive()
+    {
+        return GetLifePercentage() > 0.0f;
+    }
+
     public float GetLifePercentage()
     {
         return (float)healthPoints / maxHealthPoints;
+    }
+    public int GetCurrentHealthPoints()
+    {
+        return healthPoints;
+    }
+
+    public int GetMaxHealthPoints()
+    {
+        return maxHealthPoints;
     }
 
     public Team GetTeam()
@@ -147,16 +166,6 @@ public class WizardManager : MonoBehaviour
         if (GetTeam() == Team.BLUE)
             return Tags.BLUE_TOWER;
         return Tags.GREEN_TOWER;
-    } 
-
-        public int GetCurrentHealthPoints()
-    {
-        return healthPoints;
-    }
-
-    public int GetMaxHealthPoints()
-    {
-        return maxHealthPoints;
     }
 
     public int GetNumberbOfKills()

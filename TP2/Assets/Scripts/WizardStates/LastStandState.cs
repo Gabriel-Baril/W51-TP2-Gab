@@ -38,7 +38,7 @@ public class LastStandState : WizardState
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.NORMAL);
         }
-        else if (wizardManager.GetLifePercentage() <= 0.0f)
+        else if (!wizardManager.IsAlive())
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
         }

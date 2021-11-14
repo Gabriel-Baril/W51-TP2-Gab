@@ -25,7 +25,7 @@ public class HiddenState : WizardState
     }
 
     /// <summary>
-    /// Changement possibles : Normal, Fuite
+    /// Changement possibles : Normal, Fuite, Inactif
     /// </summary>
     public override void ManageStateChange()
     {
@@ -38,6 +38,10 @@ public class HiddenState : WizardState
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.ESCAPE);
         }
+        else if (!wizardManager.IsAlive())
+        {
+            wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
+        }
     }
 
     private new void OnTriggerEnter2D(Collider2D collision)
@@ -45,6 +49,7 @@ public class HiddenState : WizardState
         base.OnTriggerEnter2D(collision);
         if (collision.gameObject.CompareTag(wizardManager.GetOpponentProjectileTag()))
         {
+            gotAttacked = true;
         }
     }
 }

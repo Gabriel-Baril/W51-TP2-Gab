@@ -66,11 +66,11 @@ public class IntrepidState : WizardState
     }
 
     /// <summary>
-    /// Seul changement possible -> Inactif
+    /// Changements possibles : Inactif
     /// </summary>
     public override void ManageStateChange()
     {
-        if (wizardManager.GetLifePercentage() <= 0.0f)
+        if (!wizardManager.IsAlive())
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
         }

@@ -68,21 +68,19 @@ public class NormalState : WizardState
     }
 
     /// <summary>
-    /// Changements possbiles : Intrepide, Fuite, Mort
+    /// Changements possibles : Intrepide, Fuite, Mort
     /// </summary>
     public override void ManageStateChange()
     {
         if (wizardManager.GetNumberbOfKills() >= INTREPID_STATE_KILL_THRESHOLD)
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INTREPID);
-        
         } 
-        else if (((float)wizardManager.GetCurrentHealthPoints() / (float)wizardManager.GetMaxHealthPoints()) <= ESCAPE_STATE_HEALTH_THRESHOLD)
+        else if (wizardManager.GetLifePercentage() <= ESCAPE_STATE_HEALTH_THRESHOLD)
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.ESCAPE);
-        
         } 
-        else if(wizardManager.GetLifePercentage() <= 0.0f)
+        else if(!wizardManager.IsAlive())
         {
             wizardManager.ChangeWizardState(WizardManager.WizardStateToSwitch.INACTIVE);
         }
