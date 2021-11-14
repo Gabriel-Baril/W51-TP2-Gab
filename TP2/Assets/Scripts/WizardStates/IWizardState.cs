@@ -19,9 +19,13 @@ public abstract class IWizardState : MonoBehaviour
         wizardManager = GetComponent<WizardManager>();
     }
 
-    void Update() 
+    public abstract void Shoot();
+    public abstract void Move();
+    public abstract void ManageStateChange();
+
+    public void Regen()
     {
-        if(timer >= regenTickRate)
+        if (timer >= regenTickRate)
         {
             timer = 0;
             wizardManager.RegenHP(regenPerSeconds);
@@ -29,10 +33,6 @@ public abstract class IWizardState : MonoBehaviour
 
         timer += Time.deltaTime;
     }
-
-    public abstract void Shoot();
-    public abstract void Move();
-    public abstract void ManageStateChange();
 
     public void MoveTo(GameObject target)
     {

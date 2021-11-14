@@ -11,6 +11,7 @@ public class EscapeState : IWizardState
     private bool inTower = false;
     private bool inForest = false;
     private GameObject escapeTarget;
+
     private new void Awake()
     {
         base.Awake();
@@ -18,14 +19,14 @@ public class EscapeState : IWizardState
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
     }
 
-    void Update()
+    private void Update()
     {
+        Regen();
         UpdateCurrentTarget();
         Move();
         ManageStateChange();
     }
 
-    // Ne tir pas quand il est en fuite 
     public override void Shoot() {}
 
     public override void Move()
@@ -65,13 +66,13 @@ public class EscapeState : IWizardState
         }
     }
 
-    private new void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(wizardManager.InsideForest(collision))
         {
             inForest = true;
         }
-        else if (collision.gameObject.CompareTag(wizardManager.GetTeamTowerTag()))
+        else if (wizardManager.InsideTower(collision))
         {
             inTower = true;
         }
@@ -89,7 +90,7 @@ public class EscapeState : IWizardState
         {
             inForest = false;
         }
-        else if(collision.gameObject.CompareTag(wizardManager.GetTeamTowerTag()))
+        else if(!wizardManager.InsideTower(collision))
         {
             inTower = false;
         }

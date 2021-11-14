@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WizardSpawner : MonoBehaviour
 {
-    [SerializeField] private float timeBetweenSpawns = 5f;
-    [SerializeField] private int maxNumberOfWizardsPerTeam = 10;
+    [SerializeField] private float timeBetweenSpawns = 6f;
+    [SerializeField] private int maxNumberOfWizardsPerTeam = 6;
     [SerializeField] private GameObject blueWizardObject;
     [SerializeField] private GameObject greenWizardObject;
 
@@ -14,8 +14,7 @@ public class WizardSpawner : MonoBehaviour
 
     private const float WIZARD_SPAWN_OFFSET_Y = -0.75f;
 
-    // Donc, un magicien apparaîtera 1 seconde après le début du jeu.
-    private float timeSinceLastSpawn = 4f;
+    private float timeSinceLastSpawn;
 
     private void Awake()
     {
@@ -31,6 +30,9 @@ public class WizardSpawner : MonoBehaviour
             blueWizards[i] = Instantiate(blueWizardObject);
             blueWizards[i].SetActive(false);
         }
+
+        // Donc, un magicien apparaîtera 1 seconde après le début du jeu.
+        timeSinceLastSpawn = timeBetweenSpawns - 1f;
     }
 
     private void Update()

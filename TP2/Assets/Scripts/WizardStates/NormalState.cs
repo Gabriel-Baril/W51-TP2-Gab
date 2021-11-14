@@ -29,8 +29,9 @@ public class NormalState : IWizardState
         GetComponent<CircleCollider2D>().radius = targetRadius;
     }
 
-    void Update()
+    private void Update()
     {
+        Regen();
         ManageStateChange();
 
         // TODO: refactor duplication
@@ -43,12 +44,22 @@ public class NormalState : IWizardState
             }
         }
 
-        if (lastTargetEnemy != null && lastTargetEnemy.activeSelf && timeSinceLastShot > ATTACK_SPEED)
+        // Si la cible est détruite, on passe à la prochaine
+        if (lastTargetEnemy != null && !lastTargetEnemy.activeSelf)
+        {
+            lastTargetEnemy = null;
+        }
+
+        if (lastTargetEnemy != null && lastTargetEnemy.activeSelf && timeSinceLastShot >= ATTACK_SPEED)
         {
             Shoot();
         }
 
-        Move();
+        if (lastTargetEnemy == null)
+        {
+            Move();
+        }
+
         timeSinceLastShot += Time.deltaTime;
     }
 
@@ -70,15 +81,12 @@ public class NormalState : IWizardState
 
     public override void Move()
     {
-        if (lastTargetEnemy == null)
-        {
-            closestTower = GameManager.Instance.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
-            MoveTo(closestTower);
-        }
+        closestTower = GameManager.Instance.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
+        MoveTo(closestTower);
     }
 
     /// <summary>
-    /// Changements possibles : Intrepide, Fuite, Mort
+    /// Changements possibles : Intrepide, Fuite, Incactif
     /// </summary>
     public override void ManageStateChange()
     {

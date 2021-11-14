@@ -12,14 +12,13 @@ public class WizardManager : MonoBehaviour
     private int healthPoints;
     private int maxHealthPoints;
     private int nbOfKills = 0;
-    [SerializeField] private bool isHiddenInForest = false;
+    private bool isHiddenInForest = false;
 
     private const int MIN_HEALTH_POINTS = 50;
     private const int MAX_HEALTH_POINTS = 100;
 
     private void Awake()
     {
-        // ChangeWizardState(WizardState.NORMAL);
         wizardState = GetComponent<IWizardState>();
     }
 
@@ -62,9 +61,14 @@ public class WizardManager : MonoBehaviour
         healthBar.SetHealth(healthPoints, maxHealthPoints);
     }
 
-    private void AddKill()
+    public void AddKill()
     {
         nbOfKills++;
+    }
+
+    public void SetHiddenInForest(bool isHidden)
+    {
+        isHiddenInForest = isHidden;
     }
 
     public void ChangeWizardState(WizardState nextState)
@@ -111,10 +115,7 @@ public class WizardManager : MonoBehaviour
         }
     }
 
-    public void SetHiddenInForest(bool isHidden)
-    {
-        isHiddenInForest = isHidden;
-    }
+    // ---- GETTERS ----
 
     public bool IsHiddenInForest()
     {
@@ -128,7 +129,7 @@ public class WizardManager : MonoBehaviour
 
     public float GetLifePercentage()
     {
-        return (float)healthPoints / maxHealthPoints;
+        return (float)healthPoints / (float)maxHealthPoints;
     }
     public int GetCurrentHealthPoints()
     {
@@ -187,6 +188,11 @@ public class WizardManager : MonoBehaviour
         return Vector3.Distance(gameObject.transform.position, sourceObject.gameObject.transform.position);
     }
 
+    /// <summary>
+    /// Retourne oui si le magicien est touché par un projectile ennemi, non si ce n'est pas le cas.
+    /// </summary>
+    /// <param name="collision"></param>
+    /// <returns></returns>
     public bool IsGettingTouched(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag(GetOpponentProjectileTag())) return false;
@@ -199,6 +205,14 @@ public class WizardManager : MonoBehaviour
         return DistanceFromGameobject(collision.gameObject) <= collision.gameObject.GetComponent<BoxCollider2D>().size.x / 2;
     }
 
+    public bool InsideTower(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag(Tags.BLUE_TOWER) || !collision.gameObject.CompareTag(Tags.GREEN_TOWER)) return false;
+        return DistanceFromGameobject(collision.gameObject) <= 1f;
+    }
+
+    // ---- TRIGGERS ----
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (IsGettingTouched(collision))
@@ -206,22 +220,6 @@ public class WizardManager : MonoBehaviour
             collision.gameObject.SetActive(false);
             ProjectileDamage projectileDamage = collision.gameObject.GetComponent<ProjectileDamage>();
             TakeDamage(projectileDamage.GetDamage(), projectileDamage.GetSource());
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (InsideForest(collision))
-        {
-            SetHiddenInForest(true);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!InsideForest(collision))
-        {
-            SetHiddenInForest(false);
         }
     }
 }

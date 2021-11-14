@@ -14,33 +14,34 @@ public class HiddenState : IWizardState
     {
         base.Awake();
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
+        wizardManager.SetHiddenInForest(true);
     }
 
-    public override void Shoot()
+    private void Update()
     {
+        Regen();
+        ManageStateChange();
     }
 
-    public override void Move()
-    {
-    }
+    public override void Shoot(){}
+
+    public override void Move(){}
 
     /// <summary>
-    /// Changement possibles : Normal, Fuite, Inactif
+    /// Changement possibles : Normal, Fuite
     /// </summary>
     public override void ManageStateChange()
     {
         float wizardLifePercentage = wizardManager.GetLifePercentage();
         if (wizardLifePercentage >= 1.0f || (wizardLifePercentage >= NORMAL_STATE_LIFE_THRESHOLD && EnemyAroundCount() > 0))
         {
+            wizardManager.SetHiddenInForest(false);
             wizardManager.ChangeWizardState(WizardState.NORMAL);
         }
         else if (gotAttacked && wizardLifePercentage <= ESCAPE_STATE_LIFE_THRESHOLD)
         {
+            wizardManager.SetHiddenInForest(false);
             wizardManager.ChangeWizardState(WizardState.ESCAPE);
-        }
-        else if (!wizardManager.IsAlive())
-        {
-            wizardManager.ChangeWizardState(WizardState.INACTIVE);
         }
     }
 

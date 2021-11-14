@@ -28,10 +28,17 @@ public class TowerBehavior : MonoBehaviour
     {
         return towerHealth > 0;
     }
+
     public Team GetTeam()
     {
         return towerTeam;
     }
+
+    public float GetTowerHealth()
+    {
+        return towerHealth;
+    }
+
     public string GetOpponentProjectileTag()
     {
         if (GetTeam() == Team.BLUE)

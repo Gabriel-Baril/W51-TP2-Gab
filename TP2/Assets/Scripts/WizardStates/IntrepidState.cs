@@ -27,8 +27,9 @@ public class IntrepidState : IWizardState
         GetComponent<CircleCollider2D>().radius = targetRadius;
     }
 
-    void Update()
+    private void Update()
     {
+        Regen();
         ManageStateChange();
 
         // TODO: refactor duplication
@@ -41,19 +42,30 @@ public class IntrepidState : IWizardState
             }
         }
 
-        if (target != null && target.activeSelf && timeSinceLastShot > ATTACK_SPEED)
+        // Si la cible est détruite, on passe à la prochaine
+        if (target != null && !target.activeSelf)
+        {
+            target = null;
+        }
+
+        if (target != null && target.activeSelf && timeSinceLastShot >= ATTACK_SPEED)
         {
             Shoot();
         }
 
-        Move();
+
+        if(target == null)
+        {
+            Move();
+        }
+
         timeSinceLastShot += Time.deltaTime;
     }
 
     public override void Shoot()
     {
         ProjectileRecycler.Instance.SpawnProjectile(wizardManager, RandomDamageRange(), GetDirectionVector(target));
-        timeSinceLastShot = 0;
+        timeSinceLastShot = 0;     
     }
 
     private Vector3 GetDirectionVector(GameObject target)
@@ -68,11 +80,8 @@ public class IntrepidState : IWizardState
 
     public override void Move()
     {
-        if (target == null)
-        {
-            closestTower = GameManager.Instance.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
-            MoveTo(closestTower);
-        }
+        closestTower = GameManager.Instance.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
+        if (Vector3.Distance(gameObject.transform.position, closestTower.transform.position) > MIN_TARGET_RADIUS) MoveTo(closestTower);
     }
 
     /// <summary>
@@ -89,7 +98,16 @@ public class IntrepidState : IWizardState
     private new void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if(IsEnemyTargetable(collision))
+
+        // Si un ennemi l'attque, le magicien l'attaque en retour
+        if(collision.gameObject.CompareTag(wizardManager.GetOpponentProjectileTag()) && IsEnemyTargetable(collision))
+        {
+            target = collision.gameObject;
+            LookAt(collision.gameObject);
+        }
+
+        // Attaque la tour lorsqu'elle rentre dans sa portée.
+        if (collision.gameObject.CompareTag(wizardManager.GetOpponentTowerTag()))
         {
             target = collision.gameObject;
             LookAt(collision.gameObject);
@@ -99,18 +117,11 @@ public class IntrepidState : IWizardState
     private new void OnTriggerExit2D(Collider2D collision)
     {
         base.OnTriggerExit2D(collision);
-        if (IsEnemyTargetable(collision))
+
+        // Arrête d'attaquer le magicien ennemi s'il s'enfuit
+        if (target == collision.gameObject)
         {
             target = null;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Vérifie si un magicien ennemi l'attaque
-        if (collision.gameObject.CompareTag(wizardManager.GetOpponentProjectileTag()))
-        {
-            target = collision.gameObject.GetComponent<ProjectileDamage>().GetSource().gameObject;
         }
     }
 }
