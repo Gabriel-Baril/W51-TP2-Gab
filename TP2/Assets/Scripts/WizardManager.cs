@@ -182,19 +182,21 @@ public class WizardManager : MonoBehaviour
         return nbOfKills;
     }
 
+    public float DistanceFromGameobject(GameObject sourceObject)
+    {
+        return Vector3.Distance(gameObject.transform.position, sourceObject.gameObject.transform.position);
+    }
+
     public bool IsGettingTouched(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag(GetOpponentProjectileTag())) return false;
-
-        float distanceFromCollision = Vector3.Distance(gameObject.transform.position, collision.gameObject.transform.position);
-        return distanceFromCollision < 0.32f; // TODO: Refactor 0.32f
+        return DistanceFromGameobject(collision.gameObject) < 0.5f; // TODO: Refactor 0.32f
     }
 
     public bool InsideForest(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag(Tags.FOREST)) return false;
-        float distanceFromCollision = Vector3.Distance(gameObject.transform.position, collision.gameObject.transform.position);
-        return distanceFromCollision <= collision.gameObject.GetComponent<BoxCollider2D>().size.x / 2;
+        return DistanceFromGameobject(collision.gameObject) <= collision.gameObject.GetComponent<BoxCollider2D>().size.x / 2;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
