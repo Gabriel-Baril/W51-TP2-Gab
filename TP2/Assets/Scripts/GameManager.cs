@@ -50,6 +50,26 @@ public class GameManager : MonoBehaviour
         x4Button.onClick.AddListener(() => ChangeGameSpeed(maxSpeed));
     }
 
+    [System.Obsolete]
+    private void Update()
+    {
+        // Le jeu se termine si le joueur appuie sur "Escape".
+        if (Input.GetButtonDown("Cancel"))
+        {
+            // Quitte l'application si on la roule à partir de l'éditeur.
+            UnityEditor.EditorApplication.isPlaying = false;
+            // Quitte l'application si on la roule à partir du fichier .exe.
+            Application.Quit();
+        }
+
+        // Le jeu se termine si le joueur appuie sur "Enter" ou "Spacebar".
+        if (Input.GetButtonDown("Submit"))
+        {
+            // Recommence le jeu.
+            Application.LoadLevel(Application.loadedLevel);
+        }
+    }
+
     void ChangeGameSpeed(int newGameSpeed)
     {
         Time.timeScale = newGameSpeed;
