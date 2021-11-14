@@ -150,15 +150,6 @@ public class WizardManager : MonoBehaviour
     {
         return (float)healthPoints / (float)maxHealthPoints;
     }
-    public int GetCurrentHealthPoints()
-    {
-        return healthPoints;
-    }
-
-    public int GetMaxHealthPoints()
-    {
-        return maxHealthPoints;
-    }
 
     public Team GetTeam()
     {
