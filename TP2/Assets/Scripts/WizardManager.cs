@@ -5,7 +5,7 @@ using UnityEngine;
 public class WizardManager : MonoBehaviour
 {
     private const float PROJECTILE_COLLISION_RADIUS = 0.5f;
-    private const float TOWER_COLLISION_RADIUS = 0.2f;
+    private const float TOWER_COLLISION_RADIUS = 0.05f;
 
     [SerializeField] private Team wizardTeam;
     [SerializeField] private Team wizardOpponentTeam;
