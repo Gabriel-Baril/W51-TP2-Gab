@@ -92,7 +92,7 @@ public class NormalState : IWizardState
     {
         if (wizardManager.GetNumberbOfKills() >= INTREPID_STATE_KILL_THRESHOLD)
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Normal -> Intrépide");
             }
@@ -101,7 +101,7 @@ public class NormalState : IWizardState
         } 
         else if (wizardManager.GetLifePercentage() <= ESCAPE_STATE_HEALTH_THRESHOLD)
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Normal -> Fuite");
             }
@@ -110,7 +110,7 @@ public class NormalState : IWizardState
         } 
         else if(!wizardManager.IsAlive())
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Normal -> Inactif");
             }

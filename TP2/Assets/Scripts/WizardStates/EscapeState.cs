@@ -42,7 +42,7 @@ public class EscapeState : IWizardState
         // Se cache dans la forêt ou la tour la plus proche
         if (inTower)
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Fuite -> Sécurité");
             }
@@ -51,7 +51,7 @@ public class EscapeState : IWizardState
         }
         else if(inForest)
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Fuite -> Caché");
             }
@@ -60,7 +60,7 @@ public class EscapeState : IWizardState
         }
         else if (!wizardManager.IsAlive())
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Fuite -> Inactif");
             }
@@ -84,11 +84,13 @@ public class EscapeState : IWizardState
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log(collision.tag.ToString());
         if(wizardManager.InsideForest(collision))
         {
             inForest = true;
         }
-        else if (wizardManager.InsideTower(collision))
+        //else if (wizardManager.InsideTower(collision))
+        else if (wizardManager.InsideTeamTower(collision))
         {
             inTower = true;
         }
@@ -102,13 +104,5 @@ public class EscapeState : IWizardState
     private new void OnTriggerExit2D(Collider2D collision)
     {
         base.OnTriggerExit2D(collision);
-        if (!wizardManager.InsideForest(collision))
-        {
-            inForest = false;
-        }
-        else if(!wizardManager.InsideTower(collision))
-        {
-            inTower = false;
-        }
     }
 }

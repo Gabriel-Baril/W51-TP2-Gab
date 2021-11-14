@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WizardManager : MonoBehaviour
 {
+    private const float PROJECTILE_COLLISION_RADIUS = 0.5f;
+    private const float TOWER_COLLISION_RADIUS = 0.2f;
+
     [SerializeField] private Team wizardTeam;
     [SerializeField] private Team wizardOpponentTeam;
     [SerializeField] private HealthBarBehavior healthBar;
@@ -117,7 +120,7 @@ public class WizardManager : MonoBehaviour
 
     // ---- GETTERS ----
 
-    public bool PrintStates()
+    public bool ShouldPrintStates()
     {
         return PrintStateChanges;
     }
@@ -201,7 +204,7 @@ public class WizardManager : MonoBehaviour
     public bool IsGettingTouched(Collider2D collision)
     {
         if (!collision.gameObject.CompareTag(GetOpponentProjectileTag())) return false;
-        return DistanceFromGameobject(collision.gameObject) < 0.5f; // TODO: Refactor 0.32f
+        return DistanceFromGameobject(collision.gameObject) < PROJECTILE_COLLISION_RADIUS;
     }
 
     public bool InsideForest(Collider2D collision)
@@ -210,14 +213,13 @@ public class WizardManager : MonoBehaviour
         return DistanceFromGameobject(collision.gameObject) <= collision.gameObject.GetComponent<BoxCollider2D>().size.x / 2;
     }
 
-    public bool InsideTower(Collider2D collision)
+    public bool InsideTeamTower(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag(Tags.BLUE_TOWER) || !collision.gameObject.CompareTag(Tags.GREEN_TOWER)) return false;
-        return DistanceFromGameobject(collision.gameObject) <= 1f;
+        if (!collision.gameObject.CompareTag(GetTeamTowerTag())) return false;
+        return DistanceFromGameobject(collision.gameObject) <= TOWER_COLLISION_RADIUS;
     }
 
     // ---- TRIGGERS ----
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (IsGettingTouched(collision))

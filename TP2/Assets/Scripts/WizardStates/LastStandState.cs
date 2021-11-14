@@ -89,7 +89,7 @@ public class LastStandState : IWizardState
     {
         if(EnemyAroundCount() <= 0)
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Last Stand -> Normal");
             }
@@ -98,7 +98,7 @@ public class LastStandState : IWizardState
         }
         else if (!wizardManager.IsAlive())
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Last Stand -> Inactif");
             }

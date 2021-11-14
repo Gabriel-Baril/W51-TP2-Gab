@@ -91,7 +91,7 @@ public class IntrepidState : IWizardState
     {
         if (!wizardManager.IsAlive())
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Intrépide -> Inactif");
             }

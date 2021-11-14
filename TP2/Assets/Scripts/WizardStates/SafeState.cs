@@ -16,14 +16,7 @@ public class SafeState : IWizardState
         base.Awake();
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
 
-        if (wizardManager.GetTeam() == Team.BLUE)
-        {
-            tower = GameManager.Instance.FindClosestTower(transform.position, Team.BLUE);
-        }
-        else
-        {
-            tower = GameManager.Instance.FindClosestTower(transform.position, Team.GREEN);
-        }
+        tower = GameManager.Instance.FindClosestTower(transform.position, wizardManager.GetTeam());
 
         towerHealth = tower.GetComponent<TowerBehavior>().GetTowerHealth();
     }
@@ -37,6 +30,8 @@ public class SafeState : IWizardState
             // La vie de la tour baisse, donc elle se fait attaquer.
             towerAttacked = true;
         }
+
+        ManageStateChange();
     }
 
     public override void Shoot() { }
@@ -50,7 +45,7 @@ public class SafeState : IWizardState
     {
         if (wizardManager.GetLifePercentage() >= NORMAL_STATE_LIFE_THRESHOLD)
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Sécurité -> Normal");
             }
@@ -59,7 +54,7 @@ public class SafeState : IWizardState
         }
         else if (towerAttacked)
         {
-            if (wizardManager.PrintStates())
+            if (wizardManager.ShouldPrintStates())
             {
                 print("Sécurité -> Last Stand");
             }
