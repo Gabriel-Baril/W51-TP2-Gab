@@ -7,6 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    private const string BLANK_TEXT = "";
+    private const string BLUE_TEAM_WINS_MESSAGE = "L'équipe bleue a gagné !";
+    private const string GREEN_TEAM_WINS_MESSAGE = "L'équipe verte a gagné !";
+    private const int MIN_GAME_SPEED = 1;
+    private const int MEDIUM_GAME_SPEED = 2;
+    private const int MAX_GAME_SPEED = 4;
+
     [SerializeField] GameObject[] blueTowers;
     [SerializeField] GameObject[] greenTowers;
     [SerializeField] GameObject[] forests;
@@ -17,37 +24,23 @@ public class GameManager : MonoBehaviour
 
     private int blueWizardsAlive = 0;
     private int greenWizardsAlive = 0;
-    private string blankText = "";
-    private string blueTeamWinsMessage = "L'équipe bleue a gagné !";
-    private string greenTeamWinsMessage = "L'équipe verte a gagné !";
-
-    private int minSpeed = 1;
-    private int mediumSpeed = 2;
-    private int maxSpeed = 4;
 
     private bool gameOver = false;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
+        InitInstance();
     }
 
     void Start()
     {
         uiTexts[0].text = blueWizardsAlive.ToString();
         uiTexts[1].text = greenWizardsAlive.ToString();
-        uiTexts[2].text = blankText;
+        uiTexts[2].text = BLANK_TEXT;
 
-        x1Button.onClick.AddListener(() => ChangeGameSpeed(minSpeed));
-        x2Button.onClick.AddListener(() => ChangeGameSpeed(mediumSpeed));
-        x4Button.onClick.AddListener(() => ChangeGameSpeed(maxSpeed));
+        x1Button.onClick.AddListener(() => ChangeGameSpeed(MIN_GAME_SPEED));
+        x2Button.onClick.AddListener(() => ChangeGameSpeed(MEDIUM_GAME_SPEED));
+        x4Button.onClick.AddListener(() => ChangeGameSpeed(MAX_GAME_SPEED));
     }
 
     [System.Obsolete]
@@ -193,12 +186,12 @@ public class GameManager : MonoBehaviour
         {
             if(team == Team.BLUE)
             {
-                uiTexts[2].text = greenTeamWinsMessage;
+                uiTexts[2].text = GREEN_TEAM_WINS_MESSAGE;
                 uiTexts[2].color = Color.green;
                 
             } else
             {
-                uiTexts[2].text = blueTeamWinsMessage;
+                uiTexts[2].text = BLUE_TEAM_WINS_MESSAGE;
                 uiTexts[2].color = Color.blue;
             }
 
@@ -211,5 +204,17 @@ public class GameManager : MonoBehaviour
     public bool GameOver()
     {
         return gameOver;
+    }
+
+    private void InitInstance()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -10,7 +10,7 @@ public class WizardManager : MonoBehaviour
     [SerializeField] private Team wizardTeam;
     [SerializeField] private Team wizardOpponentTeam;
     [SerializeField] private HealthBarBehavior healthBar;
-    [SerializeField] private bool PrintStateChanges;
+    [SerializeField] private bool shouldPrintStateChanges;
 
     private IWizardState wizardState;
     private int healthPoints;
@@ -122,7 +122,7 @@ public class WizardManager : MonoBehaviour
 
     public bool ShouldPrintStates()
     {
-        return PrintStateChanges;
+        return shouldPrintStateChanges;
     }
 
     public bool IsHiddenInForest()

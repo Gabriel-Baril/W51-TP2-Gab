@@ -5,7 +5,6 @@ using UnityEngine;
 public class EscapeState : IWizardState
 {
     private const float MOVEMENT_SPEED = 6.0f;
-
     private const int REGENERATION_PER_SECONDS = 1;
 
     private bool inTower = false;

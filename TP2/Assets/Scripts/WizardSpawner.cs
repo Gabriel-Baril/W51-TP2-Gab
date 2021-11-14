@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WizardSpawner : MonoBehaviour
 {
+    private const float WIZARD_SPAWN_OFFSET_Y = -0.75f;
+
     [SerializeField] private float timeBetweenSpawns = 6f;
     [SerializeField] private int maxNumberOfWizardsPerTeam = 6;
     [SerializeField] private GameObject blueWizardObject;
@@ -11,8 +13,6 @@ public class WizardSpawner : MonoBehaviour
 
     private GameObject[] greenWizards; 
     private GameObject[] blueWizards;
-
-    private const float WIZARD_SPAWN_OFFSET_Y = -0.75f;
 
     private float timeSinceLastSpawn;
 

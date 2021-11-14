@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class LastStandState : IWizardState
 {
-    private GameObject target;
-    private float timeSinceLastShot = 0;
-
     private const int REGENERATION_PER_SECONDS = 2;
     private const float ATTACK_SPEED = 0.25f; // 4 tirs / seconde
     private const float MIN_TARGET_RADIUS = 2.5f;
@@ -14,8 +11,8 @@ public class LastStandState : IWizardState
     private const float MIN_DAMAGE = 3.0f;
     private const float MAX_DAMAGE = 5.0f;
 
-    private const float BLUE_TEAM_OFFSET = 1f;
-    private const float GREEN_TEAM_OFFSET = -1f;
+    private GameObject target;
+    private float timeSinceLastShot = 0;
 
     private new void Awake()
     {

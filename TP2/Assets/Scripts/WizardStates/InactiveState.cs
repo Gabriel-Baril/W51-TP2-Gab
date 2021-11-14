@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// N'est pas réellement un "état", représente seulement le comportement
+/// d'un magicien quand la partie est terminée.
+/// </summary>
 public class InactiveState : IWizardState
 {
-    /// <summary>
-    /// N'est pas réellement un "état", représente seulement le comportement
-    /// d'un magicien quand la partie est terminée.
-    /// </summary>
-
     private const int REGENERATION_PER_SECONDS = 0;
 
     private new void Awake()
