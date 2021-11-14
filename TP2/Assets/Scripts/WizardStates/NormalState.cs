@@ -33,6 +33,16 @@ public class NormalState : IWizardState
     {
         ManageStateChange();
 
+        // TODO: refactor duplication
+        if(lastTargetEnemy != null && IsWizard(lastTargetEnemy))
+        {
+            WizardManager targetedWizardManager = lastTargetEnemy.GetComponent<WizardManager>();
+            if(targetedWizardManager.IsHiddenInForest())
+            {
+                lastTargetEnemy = null;
+            }
+        }
+
         if (lastTargetEnemy != null && lastTargetEnemy.activeSelf && timeSinceLastShot > ATTACK_SPEED)
         {
             Shoot();

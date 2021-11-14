@@ -7,7 +7,7 @@ public class HiddenState : IWizardState
     private const int REGENERATION_PER_SECONDS = 3;
     private const float NORMAL_STATE_LIFE_THRESHOLD = 0.5f;
     private const float ESCAPE_STATE_LIFE_THRESHOLD = 0.25f;
-    
+
     bool gotAttacked = false;
 
     private new void Awake()
@@ -30,11 +30,11 @@ public class HiddenState : IWizardState
     public override void ManageStateChange()
     {
         float wizardLifePercentage = wizardManager.GetLifePercentage();
-        if (EnemyAroundCount() > 0 || wizardLifePercentage >= NORMAL_STATE_LIFE_THRESHOLD)
+        if (wizardLifePercentage >= 1.0f || (wizardLifePercentage >= NORMAL_STATE_LIFE_THRESHOLD && EnemyAroundCount() > 0))
         {
             wizardManager.ChangeWizardState(WizardState.NORMAL);
         }
-        else if(gotAttacked && wizardLifePercentage <= ESCAPE_STATE_LIFE_THRESHOLD)
+        else if (gotAttacked && wizardLifePercentage <= ESCAPE_STATE_LIFE_THRESHOLD)
         {
             wizardManager.ChangeWizardState(WizardState.ESCAPE);
         }
@@ -51,5 +51,9 @@ public class HiddenState : IWizardState
         {
             gotAttacked = true;
         }
+    }
+    private new void OnTriggerExit2D(Collider2D collision)
+    {
+        base.OnTriggerExit2D(collision);
     }
 }

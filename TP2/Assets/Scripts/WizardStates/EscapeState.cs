@@ -65,7 +65,7 @@ public class EscapeState : IWizardState
         }
     }
 
-    private new void OnTriggerEnter2D(Collider2D collision)
+    private new void OnTriggerStay2D(Collider2D collision)
     {
         if(wizardManager.InsideForest(collision))
         {
@@ -77,8 +77,14 @@ public class EscapeState : IWizardState
         }
     }
 
+    private new void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+    }
+
     private new void OnTriggerExit2D(Collider2D collision)
     {
+        base.OnTriggerExit2D(collision);
         if (!wizardManager.InsideForest(collision))
         {
             inForest = false;

@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 8228572420125869484}
   - component: {fileID: 8565756437090764729}
   - component: {fileID: 6867442457423216856}
-  - component: {fileID: 2989319158570719103}
+  - component: {fileID: 3273295222301900837}
   m_Layer: 0
   m_Name: WizardGreen
   m_TagString: GreenWizard
@@ -270,7 +270,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &2989319158570719103
+--- !u!58 &3273295222301900837
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

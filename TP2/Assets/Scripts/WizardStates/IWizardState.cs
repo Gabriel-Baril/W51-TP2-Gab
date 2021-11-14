@@ -59,6 +59,11 @@ public abstract class IWizardState : MonoBehaviour
         this.speed = speed;
     }
 
+    protected bool IsWizard(GameObject obj)
+    {
+        return obj.CompareTag(Tags.BLUE_WIZARD) || obj.CompareTag(Tags.GREEN_WIZARD);
+    }
+
     /// <summary>
     /// Retourne vrai si la collision est causée par un magicien ennemie ET que le magicien n'est pas caché.
     /// </summary>

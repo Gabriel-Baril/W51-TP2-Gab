@@ -31,6 +31,16 @@ public class IntrepidState : IWizardState
     {
         ManageStateChange();
 
+        // TODO: refactor duplication
+        if (target != null && IsWizard(target))
+        {
+            WizardManager targetedWizardManager = target.GetComponent<WizardManager>();
+            if (targetedWizardManager.IsHiddenInForest())
+            {
+                target = null;
+            }
+        }
+
         if (target != null && target.activeSelf && timeSinceLastShot > ATTACK_SPEED)
         {
             Shoot();

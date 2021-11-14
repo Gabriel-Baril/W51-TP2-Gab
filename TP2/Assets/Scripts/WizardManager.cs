@@ -12,7 +12,7 @@ public class WizardManager : MonoBehaviour
     private int healthPoints;
     private int maxHealthPoints;
     private int nbOfKills = 0;
-    private bool isHiddenInForest = false;
+    [SerializeField] private bool isHiddenInForest = false;
 
     private const int MIN_HEALTH_POINTS = 50;
     private const int MAX_HEALTH_POINTS = 100;
@@ -207,11 +207,16 @@ public class WizardManager : MonoBehaviour
             ProjectileDamage projectileDamage = collision.gameObject.GetComponent<ProjectileDamage>();
             TakeDamage(projectileDamage.GetDamage(), projectileDamage.GetSource());
         }
-        else if (InsideForest(collision))
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (InsideForest(collision))
         {
             SetHiddenInForest(true);
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!InsideForest(collision))

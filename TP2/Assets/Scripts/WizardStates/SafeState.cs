@@ -47,4 +47,9 @@ public class SafeState : IWizardState
             gotAttacked = true;
         }
     }
+
+    private new void OnTriggerExit2D(Collider2D collision)
+    {
+        base.OnTriggerExit2D(collision);
+    }
 }

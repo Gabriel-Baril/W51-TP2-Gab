@@ -6,7 +6,6 @@ public class WizardSpawner : MonoBehaviour
 {
     [SerializeField] private float timeBetweenSpawns = 5f;
     [SerializeField] private int maxNumberOfWizardsPerTeam = 10;
-    [SerializeField] private GameManager gameManager;
     [SerializeField] private GameObject blueWizardObject;
     [SerializeField] private GameObject greenWizardObject;
 
