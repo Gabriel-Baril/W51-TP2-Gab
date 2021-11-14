@@ -221,6 +221,7 @@ MonoBehaviour:
   wizardTeam: 1
   wizardOpponentTeam: 0
   healthBar: {fileID: 6256856995861667600}
+  shouldPrintStateChanges: 1
 --- !u!114 &8228572420125869484
 MonoBehaviour:
   m_ObjectHideFlags: 0

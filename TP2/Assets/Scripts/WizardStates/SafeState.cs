@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SafeState : IWizardState
 {
+    private const int REGENERATION_PER_SECONDS = 5;
+    private const float NORMAL_STATE_LIFE_THRESHOLD = 1.0f;
+
     private GameObject tower;
     private bool towerAttacked = false;
     private float towerHealth;
-
-    private const int REGENERATION_PER_SECONDS = 5;
-    private const float NORMAL_STATE_LIFE_THRESHOLD = 1.0f;
 
     private new void Awake()
     {

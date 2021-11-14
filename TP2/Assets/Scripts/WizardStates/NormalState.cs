@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class NormalState : IWizardState
 {
-    private GameObject lastTargetEnemy;
-    private GameObject closestTower;
-
-    private float timeSinceLastShot = 0;
-
     private const float ATTACK_SPEED = 0.5f; // 2 tirs / seconde
     private const float MOVEMENT_SPEED = 3.0f;
     private const int REGENERATION_PER_SECONDS = 1;
@@ -19,6 +14,11 @@ public class NormalState : IWizardState
 
     private const int INTREPID_STATE_KILL_THRESHOLD = 3;
     private const float ESCAPE_STATE_HEALTH_THRESHOLD = 0.25f; // 25% de vie
+
+    private GameObject lastTargetEnemy;
+    private GameObject closestTower;
+
+    private float timeSinceLastShot = 0;
 
     private new void Awake()
     {

@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class IntrepidState : IWizardState
 {
-    private GameObject target;
-    private GameObject closestTower;
-
-    private float timeSinceLastShot = 0;
-
     private const float ATTACK_SPEED = 0.5f; // 2 tirs / seconde
     private const float MOVEMENT_SPEED = 4.0f;
     private const int REGENERATION_PER_SECONDS = 2;
@@ -17,6 +12,11 @@ public class IntrepidState : IWizardState
 
     private const float MIN_TARGET_RADIUS = 1.5f;
     private const float MAX_TARGET_RADIUS = 3.0f;
+
+    private GameObject target;
+    private GameObject closestTower;
+
+    private float timeSinceLastShot = 0;
 
     private new void Awake()
     {
