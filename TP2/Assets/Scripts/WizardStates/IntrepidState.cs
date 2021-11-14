@@ -81,7 +81,7 @@ public class IntrepidState : IWizardState
     public override void Move()
     {
         closestTower = GameManager.Instance.FindClosestTower(transform.position, wizardManager.GetOpponentTeam());
-        if (Vector3.Distance(gameObject.transform.position, closestTower.transform.position) > MIN_TARGET_RADIUS) MoveTo(closestTower);
+        if (Vector3.Distance(gameObject.transform.position, closestTower.transform.position) >= MIN_TARGET_RADIUS - 1) MoveTo(closestTower);
     }
 
     /// <summary>
