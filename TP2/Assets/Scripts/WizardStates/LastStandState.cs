@@ -23,14 +23,6 @@ public class LastStandState : IWizardState
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
         targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
         GetComponent<CircleCollider2D>().radius = targetRadius;
-
-        // if(wizardManager.GetTeam() == Team.BLUE)
-        // {
-        //     transform.localPosition = new Vector3(transform.position.x + BLUE_TEAM_OFFSET, transform.position.y, transform.position.z);
-        // } else
-        // {
-        //     transform.localPosition = new Vector3(transform.position.x + GREEN_TEAM_OFFSET, transform.position.y, transform.position.z);
-        // }
     }
 
     private int RandomDamageRange()
@@ -52,7 +44,7 @@ public class LastStandState : IWizardState
             }
         }
 
-        // Si la cible est détruite, on passe à la prochaine
+        // Si la cible est dï¿½truite, on passe ï¿½ la prochaine
         if (target != null && !target.activeSelf)
         {
             target = null;
