@@ -16,10 +16,8 @@ public class SafeState : IWizardState
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
     }
 
-    // Not shooting 
     public override void Shoot(){}
 
-    // 
     public override void Move(){}
 
     /// <summary>
@@ -44,7 +42,7 @@ public class SafeState : IWizardState
     private new void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.gameObject.CompareTag(wizardManager.GetOpponentProjectileTag()))
+        if (wizardManager.IsGettingTouched(collision))
         {
             gotAttacked = true;
         }

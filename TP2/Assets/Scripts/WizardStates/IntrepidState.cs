@@ -76,20 +76,20 @@ public class IntrepidState : IWizardState
         }
     }
 
-    private new void OnTriggerEnter2D(Collider2D other)
+    private new void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerEnter2D(other);
-        if(other.gameObject.CompareTag(wizardManager.GetOpponentTowerTag()))
+        base.OnTriggerEnter2D(collision);
+        if(IsEnemyTargetable(collision))
         {
-            target = other.gameObject;
-            LookAt(other.gameObject);
+            target = collision.gameObject;
+            LookAt(collision.gameObject);
         }
     }
 
-    private new void OnTriggerExit2D(Collider2D other)
+    private new void OnTriggerExit2D(Collider2D collision)
     {
-        base.OnTriggerExit2D(other);
-        if (other.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))
+        base.OnTriggerExit2D(collision);
+        if (IsEnemyTargetable(collision))
         {
             target = null;
         }

@@ -12,6 +12,7 @@ public class WizardManager : MonoBehaviour
     private int healthPoints;
     private int maxHealthPoints;
     private int nbOfKills = 0;
+    private bool isHiddenInForest = false;
 
     private const int MIN_HEALTH_POINTS = 50;
     private const int MAX_HEALTH_POINTS = 100;
@@ -53,7 +54,7 @@ public class WizardManager : MonoBehaviour
     {
         healthPoints += healAmount;
 
-        if(healthPoints > maxHealthPoints)
+        if (healthPoints > maxHealthPoints)
         {
             healthPoints = maxHealthPoints;
         }
@@ -108,6 +109,16 @@ public class WizardManager : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    public void SetHiddenInForest(bool isHidden)
+    {
+        isHiddenInForest = isHidden;
+    }
+
+    public bool IsHiddenInForest()
+    {
+        return isHiddenInForest;
     }
 
     public bool IsAlive()
@@ -171,12 +182,39 @@ public class WizardManager : MonoBehaviour
         return nbOfKills;
     }
 
+    public bool IsGettingTouched(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag(GetOpponentProjectileTag())) return false;
+
+        float distanceFromCollision = Vector3.Distance(gameObject.transform.position, collision.gameObject.transform.position);
+        return distanceFromCollision < 0.32f; // TODO: Refactor 0.32f
+    }
+
+    public bool InsideForest(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag(Tags.FOREST)) return false;
+        float distanceFromCollision = Vector3.Distance(gameObject.transform.position, collision.gameObject.transform.position);
+        return distanceFromCollision <= collision.gameObject.GetComponent<BoxCollider2D>().size.x / 2;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(GetOpponentProjectileTag()))
+        if (IsGettingTouched(collision))
         {
             collision.gameObject.SetActive(false);
-            TakeDamage(collision.gameObject.GetComponent<ProjectileDamage>().GetDamage(), collision.gameObject.GetComponent<ProjectileDamage>().GetSource());
+            ProjectileDamage projectileDamage = collision.gameObject.GetComponent<ProjectileDamage>();
+            TakeDamage(projectileDamage.GetDamage(), projectileDamage.GetSource());
+        }
+        else if (InsideForest(collision))
+        {
+            SetHiddenInForest(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!InsideForest(collision))
+        {
+            SetHiddenInForest(false);
         }
     }
 }

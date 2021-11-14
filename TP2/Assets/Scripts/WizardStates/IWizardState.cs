@@ -59,9 +59,21 @@ public abstract class IWizardState : MonoBehaviour
         this.speed = speed;
     }
 
+    /// <summary>
+    /// Retourne vrai si la collision est causée par un magicien ennemie ET que le magicien n'est pas caché.
+    /// </summary>
+    /// <param name="collision"></param>
+    /// <returns></returns>
+    protected bool IsEnemyTargetable(Collider2D collision)
+    {
+        if (!collision.gameObject.CompareTag(wizardManager.GetOpponentWizardTag())) return false;
+        WizardManager enemyWizard = collision.gameObject.GetComponent<WizardManager>();
+        return !enemyWizard.IsHiddenInForest();
+    }
+
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))
+        if (IsEnemyTargetable(collision))
         {
             enemyAroundCount++;
         }
@@ -69,7 +81,7 @@ public abstract class IWizardState : MonoBehaviour
 
     protected void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(wizardManager.GetOpponentWizardTag()))
+        if (IsEnemyTargetable(collision))
         {
             enemyAroundCount--;
         }

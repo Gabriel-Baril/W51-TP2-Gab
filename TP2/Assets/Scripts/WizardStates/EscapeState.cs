@@ -67,7 +67,7 @@ public class EscapeState : IWizardState
 
     private new void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag(Tags.FOREST))
+        if(wizardManager.InsideForest(collision))
         {
             inForest = true;
         }
@@ -79,7 +79,7 @@ public class EscapeState : IWizardState
 
     private new void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(Tags.FOREST))
+        if (!wizardManager.InsideForest(collision))
         {
             inForest = false;
         }

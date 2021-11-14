@@ -47,7 +47,7 @@ public class HiddenState : IWizardState
     private new void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if (collision.gameObject.CompareTag(wizardManager.GetOpponentProjectileTag()))
+        if (wizardManager.IsGettingTouched(collision))
         {
             gotAttacked = true;
         }
