@@ -27,6 +27,7 @@ public class NormalState : IWizardState
         SetRegenerationPerSeconds(REGENERATION_PER_SECONDS);
         targetRadius = Random.Range(MIN_TARGET_RADIUS, MAX_TARGET_RADIUS);
         GetComponent<CircleCollider2D>().radius = targetRadius;
+        wizardManager.SetLastForestVisited(null);
     }
 
     private void Update()

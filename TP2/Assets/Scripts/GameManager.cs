@@ -92,6 +92,25 @@ public class GameManager : MonoBehaviour
         return closestForest;
     }
 
+    public GameObject FindSecondClosestForest(Vector3 position)
+    {
+        GameObject closestForest = forests[0];
+        float minDistance = Vector3.Distance(position, closestForest.transform.position);
+        GameObject secondClosestForest = forests[1];
+
+        for (int i = 1; i < forests.Length; i++)
+        {
+            if (Vector3.Distance(position, forests[i].transform.position) < minDistance)
+            {
+                secondClosestForest = closestForest;
+                closestForest = forests[i];
+                minDistance = Vector3.Distance(position, closestForest.transform.position);
+            }
+        }
+
+        return secondClosestForest;
+    }
+
     public GameObject FindClosestTower(Vector3 position, Team team)
     {
         return FindClosestTowerFromArray(position, team);

@@ -56,6 +56,7 @@ public class EscapeState : IWizardState
                 print("Fuite -> Caché");
             }
 
+            wizardManager.SetLastForestVisited(escapeTarget);
             wizardManager.ChangeWizardState(WizardState.HIDDEN);
         }
         else if (!wizardManager.IsAlive())
@@ -72,7 +73,14 @@ public class EscapeState : IWizardState
 
     private void UpdateCurrentTarget()
     {
-        GameObject closestForest = GameManager.Instance.FindClosestForest(transform.position);
+        GameObject closestForest;
+        if(wizardManager.GetLastForestVisited() == null)
+        {
+            closestForest = GameManager.Instance.FindClosestForest(transform.position);
+        } else
+        {
+            closestForest = GameManager.Instance.FindSecondClosestForest(transform.position);
+        }
         GameObject closestTower = GameManager.Instance.FindClosestTower(transform.position, wizardManager.GetTeam());
 
         escapeTarget = closestForest;

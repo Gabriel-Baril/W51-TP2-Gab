@@ -17,6 +17,7 @@ public class WizardManager : MonoBehaviour
     private int maxHealthPoints;
     private int nbOfKills = 0;
     private bool isHiddenInForest = false;
+    private GameObject lastForestVisited = null;
 
     private const int MIN_HEALTH_POINTS = 50;
     private const int MAX_HEALTH_POINTS = 100;
@@ -118,7 +119,17 @@ public class WizardManager : MonoBehaviour
         }
     }
 
-    // ---- GETTERS ----
+    // ---- GETTERS / SETTERS ----
+
+    public GameObject GetLastForestVisited()
+    {
+        return lastForestVisited;
+    }
+
+    public void SetLastForestVisited(GameObject forest)
+    {
+        lastForestVisited = forest;
+    }
 
     public bool ShouldPrintStates()
     {
