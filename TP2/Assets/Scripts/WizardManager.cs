@@ -7,6 +7,7 @@ public class WizardManager : MonoBehaviour
     [SerializeField] private Team wizardTeam;
     [SerializeField] private Team wizardOpponentTeam;
     [SerializeField] private HealthBarBehavior healthBar;
+    [SerializeField] private bool PrintStateChanges;
 
     private IWizardState wizardState;
     private int healthPoints;
@@ -42,8 +43,7 @@ public class WizardManager : MonoBehaviour
         if (healthPoints <= 0)
         {
             // Magicien est mort.
-            ChangeWizardState(WizardState.INACTIVE);
-            gameObject.SetActive(false);
+            // Les états déscativent l'objet eux-mêmes.
             GameManager.Instance.RemoveWizardCount(wizardTeam);
             attacker.AddKill();
         }
@@ -116,6 +116,11 @@ public class WizardManager : MonoBehaviour
     }
 
     // ---- GETTERS ----
+
+    public bool PrintStates()
+    {
+        return PrintStateChanges;
+    }
 
     public bool IsHiddenInForest()
     {

@@ -91,7 +91,13 @@ public class IntrepidState : IWizardState
     {
         if (!wizardManager.IsAlive())
         {
+            if (wizardManager.PrintStates())
+            {
+                print("Intrépide -> Inactif");
+            }
+
             wizardManager.ChangeWizardState(WizardState.INACTIVE);
+            gameObject.SetActive(false);
         }
     }
 

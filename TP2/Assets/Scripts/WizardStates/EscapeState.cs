@@ -42,15 +42,31 @@ public class EscapeState : IWizardState
         // Se cache dans la forêt ou la tour la plus proche
         if (inTower)
         {
+            if (wizardManager.PrintStates())
+            {
+                print("Fuite -> Sécurité");
+            }
+
             wizardManager.ChangeWizardState(WizardState.SAFE);
         }
         else if(inForest)
         {
+            if (wizardManager.PrintStates())
+            {
+                print("Fuite -> Caché");
+            }
+
             wizardManager.ChangeWizardState(WizardState.HIDDEN);
         }
         else if (!wizardManager.IsAlive())
         {
+            if (wizardManager.PrintStates())
+            {
+                print("Fuite -> Inactif");
+            }
+
             wizardManager.ChangeWizardState(WizardState.INACTIVE);
+            gameObject.SetActive(false);
         }
     }
 

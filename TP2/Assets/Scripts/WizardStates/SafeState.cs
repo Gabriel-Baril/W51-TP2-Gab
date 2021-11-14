@@ -50,10 +50,20 @@ public class SafeState : IWizardState
     {
         if (wizardManager.GetLifePercentage() >= NORMAL_STATE_LIFE_THRESHOLD)
         {
+            if (wizardManager.PrintStates())
+            {
+                print("Sécurité -> Normal");
+            }
+
             wizardManager.ChangeWizardState(WizardState.NORMAL);
         }
         else if (towerAttacked)
         {
+            if (wizardManager.PrintStates())
+            {
+                print("Sécurité -> Last Stand");
+            }
+
             wizardManager.ChangeWizardState(WizardState.LAST_STAND);
         }
     }

@@ -35,11 +35,21 @@ public class HiddenState : IWizardState
         float wizardLifePercentage = wizardManager.GetLifePercentage();
         if (wizardLifePercentage >= 1.0f || (wizardLifePercentage >= NORMAL_STATE_LIFE_THRESHOLD && EnemyAroundCount() > 0))
         {
+            if (wizardManager.PrintStates())
+            {
+                print("Caché -> Normal");
+            }
+
             wizardManager.SetHiddenInForest(false);
             wizardManager.ChangeWizardState(WizardState.NORMAL);
         }
         else if (gotAttacked && wizardLifePercentage <= ESCAPE_STATE_LIFE_THRESHOLD)
         {
+            if (wizardManager.PrintStates())
+            {
+                print("Caché -> Fuite");
+            }
+
             wizardManager.SetHiddenInForest(false);
             wizardManager.ChangeWizardState(WizardState.ESCAPE);
         }
